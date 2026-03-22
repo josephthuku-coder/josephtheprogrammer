@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' 'unsafe-inline' ws: wss: http: https: 127.0.0.1 localhost *;">
+  <title>J.G | JOSEE'S FINEST Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><defs><linearGradient id='logoGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23ff69b4' /><stop offset='50%25' style='stop-color:%23ff1493' /><stop offset='100%25' style='stop-color:%23c71585' /></linearGradient><filter id='glow'><feGaussianBlur stdDeviation='4' result='coloredBlur'/><feMerge><feMergeNode in='coloredBlur'/><feMergeNode in='SourceGraphic'/></feMerge></filter><filter id='shadow'><feDropShadow dx='2' dy='2' stdDeviation='3' flood-opacity='0.3'/></filter></defs><rect x='5' y='5' width='110' height='110' rx='25' ry='25' fill='url(%23logoGrad)' filter='url(%23glow)' stroke='%23ffffff' stroke-width='3'/><rect x='15' y='15' width='90' height='90' rx='20' ry='20' fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.8'/><text x='60' y='70' text-anchor='middle' fill='%23ffffff' font-size='48' font-weight='900' font-family='Arial Black,sans-serif' filter='url(%23shadow)' stroke='%23000000' stroke-width='1'>J.G</text><path d='M25 35 L35 45 L25 55 M45 35 L55 45 L45 55 M65 35 L75 45 L65 55 M85 35 L95 45 L85 55' stroke='%23ffffff' stroke-width='3' fill='none' opacity='0.9' filter='url(%23shadow)'/><circle cx='60' cy='60' r='45' fill='none' stroke='%23ffffff' stroke-width='1' opacity='0.5'/></svg>">
+  <link rel="stylesheet" href="CSS/style-clean.css">
+</head>
+<body class="homepage">
+  <header>
+    <nav class="navbar">
+      <h2>@JOSEE'S FINEST</h2>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="fun.html">Fun</a></li>
+        <li><a href="quotes-fresh.html">Quotes</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin-login.html">Login</a></li>
+        <li><a href="professional.html">Professional</a></li>
+        <li><a href="#discover">Discover</a></li>
+        <li><a href="#comments">Comments</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section id="home" class="tab-content active">
+      <div class="hero">
+        <div class="romantic-overlay"></div>
+        <div class="floating-hearts"></div>
+        <h1 class="typewriter"></h1>
+        
+        <div class="welcome-message">
+          <p class="subtext">
+            <span class="romantic-icon">💝</span>
+            Welcome to My Digital Heart
+            <span class="romantic-icon">💝</span>
+          </p>
+          <p class="romantic-subtitle">
+            Where Code Meets Passion, and Dreams Take Flight
+          </p>
+          <p class="time-greeting" id="timeGreeting">
+            <span class="greeting-icon">✨</span>
+            <span id="greetingText">Good evening, beautiful soul!</span>
+            <span class="greeting-icon">✨</span>
+          </p>
+        </div>
+
+        <div class="hero-buttons">
+          <button class="btn romantic-btn" type="button" onclick="goTo('projects')">
+            <span class="btn-icon">🚀</span>
+            Explore My Dreams
+          </button>
+          <button class="btn romantic-btn" type="button" onclick="goTo('discover')">
+            <span class="btn-icon">💫</span>
+            Discover My World
+          </button>
+        </div>
+        
+        <div class="romantic-quote">
+          <p class="quote-text">
+            "In the garden of code, every project is a flower of innovation"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="tab-content">
+      <header class="section-header">
+        <h2>Projects</h2>
+        <p class="section-subtitle">
+          A quick snapshot of what Josee has been building and experimenting with.
+        </p>
+      </header>
+
+      <div id="projectsContainer" class="projects-grid"></div>
+
+      <div class="section-actions">
+        <a class="btn" href="projects.html">View full projects gallery</a>
+        <a class="btn" href="login.html">Open admin dashboard</a>
+      </div>
+    </section>
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p style="text-align:center; margin-top:10px; opacity:0.9;">
+        Reach out for collaboration, questions, or opportunities.
+      </p>
+      <div style="text-align:center; margin-top:16px;">
+        <a class="btn" href="contact.html">Open Contact Page</a>
+      </div>
+    </section>
+
+    <section id="login" class="tab-content">
+      <h2>Administrator Login</h2>
+      <p style="text-align:center; margin-top:10px; opacity:0.9;">
+        Administrator-only access to upload and manage your content.
+      </p>
+      <div style="text-align:center; margin-top:16px;">
+        <a class="btn" href="login.html">Go to Login Page</a>
+      </div>
+    </section>
+
+    <section id="discover" class="tab-content">
+      <div class="discover-header">
+        <h2 class="discover-title">🚀 Discover Latest Tech</h2>
+        <p class="discover-subtitle">
+          Explore cutting-edge innovators and stay updated with the latest technology news from around the world
+        </p>
+      </div>
+
+      <div class="discover-content">
+        <div class="innovators-section">
+          <h3 class="section-title">💡 Tech Innovators</h3>
+          <p class="section-description">Visionaries shaping our digital future</p>
+          <div id="innovators-container" class="innovators-grid"></div>
+        </div>
+
+        <div class="news-section">
+          <h3 class="section-title">📰 Tech News</h3>
+          <p class="section-description">Latest updates from the technology world</p>
+          <div id="news-container" class="news-grid"></div>
+          <div class="load-more-container">
+            <button id="load-more-news" class="load-more-btn">⚡ Load More News</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comments" class="tab-content">
+      <div class="comments-header">
+        <h2 class="comments-title">💬 Visitor Comments</h2>
+        <p class="comments-subtitle">
+          Your feedback fuels my passion for innovation and excellence
+        </p>
+        <p class="comments-invitation">
+          ✨ Share your thoughts, inspire creativity, and become part of this digital journey ✨
+        </p>
+      </div>
+
+      <div class="comments-container">
+        <div class="comment-form-section">
+          <h3 class="form-title">✨ Leave a Comment</h3>
+          <div class="positive-suggestions">
+            <p class="suggestions-text">💡 Positive comment ideas:</p>
+            <div class="suggestion-chips">
+              <span class="suggestion-chip" onclick="addSuggestion('Amazing portfolio!')">Amazing portfolio!</span>
+              <span class="suggestion-chip" onclick="addSuggestion('Great work on the projects!')">Great work!</span>
+              <span class="suggestion-chip" onclick="addSuggestion('Love the design and creativity!')">Love the design!</span>
+              <span class="suggestion-chip" onclick="addSuggestion('Very impressive skills!')">Impressive skills!</span>
+              <span class="suggestion-chip" onclick="addSuggestion('Inspiring work!')">Inspiring work!</span>
+            </div>
+          </div>
+          
+          <form id="commentForm" class="comment-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="commentName" placeholder="Your Name *" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="commentEmail" placeholder="Your Email (optional)">
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea id="commentContent" placeholder="Share your positive thoughts..." required></textarea>
+            </div>
+            <button type="submit" class="submit-comment-btn">🌟 Post Comment</button>
+          </form>
+        </div>
+
+        <div class="comments-list-section">
+          <h3 class="comments-list-title">💭 Recent Comments</h3>
+          <div id="commentsList" class="comments-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> JOSEE'S FINEST | Built by J.G</p>
+  </footer>
+
+  <!-- Firebase (needed because JS/script.js uses firebase.initializeApp + firestore) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+    function goTo(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      document.querySelectorAll(".tab-content").forEach(s => s.classList.remove("active"));
+      target.classList.add("active");
+      window.location.hash = "#" + id;
+    }
+    
+    // Time-based greeting
+    function updateTimeGreeting() {
+      const hour = new Date().getHours();
+      const greetingElement = document.getElementById('greetingText');
+      let greeting = '';
+      
+      if (hour >= 5 && hour < 12) {
+        greeting = 'Good morning, beautiful soul! ☀️';
+      } else if (hour >= 12 && hour < 17) {
+        greeting = 'Good afternoon, wonderful spirit! 🌤️';
+      } else if (hour >= 17 && hour < 21) {
+        greeting = 'Good evening, lovely heart! 🌅';
+      } else {
+        greeting = 'Good night, sweet dreamer! 🌙';
+      }
+      
+      if (greetingElement) {
+        greetingElement.textContent = greeting;
+      }
+    }
+    
+    // Update greeting on page load
+    updateTimeGreeting();
+    
+    // Update greeting every minute
+    setInterval(updateTimeGreeting, 60000);
+  </script>
+
+  <script src="JS/code-rain.js"></script>
+  <script src="JS/script.js"></script>
+</body>
+</html>

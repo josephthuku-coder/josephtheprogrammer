@@ -1,0 +1,520 @@
+/* 🎬 BRANDED PLAYER STYLES */
+/* Romantic, beautiful, professional design for premium movie experience */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #0f0f23);
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.branded-player-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #0f0f23);
+}
+
+/* Header with Branding */
+.player-header {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.9), rgba(139, 0, 0, 0.9));
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(229, 9, 20, 0.5);
+    margin: 0;
+}
+
+.logo .tagline {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.movie-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.movie-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.movie-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.year, .rating, .genre, .quality {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.rating {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.quality {
+    background: rgba(0, 255, 0, 0.2);
+    color: #00ff00;
+}
+
+.player-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Main Player Area */
+.player-main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.video-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.video-container {
+    position: relative;
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    aspect-ratio: 16/9;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.video-frame, .video-element {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e, #0f0f23);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid #e50914;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ad-free-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #00ff00, #00cc00);
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    z-index: 10;
+}
+
+.movie-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+}
+
+.movie-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.views, .likes, .duration {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.likes {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.likes:hover {
+    color: #e50914;
+    transform: scale(1.05);
+}
+
+/* Interaction Section */
+.interaction-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 100px;
+    background: linear-gradient(135deg, #e50914, #cc0812);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+.like-btn:hover {
+    background: linear-gradient(135deg, #ff1493, #c71585);
+}
+
+.comment-btn:hover {
+    background: linear-gradient(135deg, #00f7ff, #00ccdd);
+}
+
+.share-btn:hover {
+    background: linear-gradient(135deg, #28a745, #208837);
+}
+
+/* Comments Section */
+.comments-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.comments-section h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.comment-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comment-input input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.comment-input input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.comment-input button {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.comment-input button:hover {
+    background: #cc0812;
+}
+
+.comments-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.comment {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #e50914;
+}
+
+.comment-text {
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Visitor Info */
+.visitor-info {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.visitor-info h4 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.visitor-stats {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.visitor-stats p {
+    margin: 5px 0;
+}
+
+.visitor-stats strong {
+    color: #fff;
+}
+
+/* Footer */
+.player-footer {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.9), rgba(139, 0, 0, 0.9));
+    backdrop-filter: blur(20px);
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -4px 20px rgba(229, 9, 20, 0.3);
+}
+
+.brand-footer p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-links {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Messages */
+.player-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 255, 0, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.5s ease;
+    font-weight: bold;
+}
+
+.player-message.error {
+    background: rgba(255, 0, 0, 0.9);
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .player-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .interaction-section {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .player-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .brand-section {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .movie-title {
+        font-size: 20px;
+    }
+    
+    .player-main {
+        padding: 10px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .movie-title {
+        font-size: 16px;
+    }
+    
+    .movie-meta {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .action-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+}

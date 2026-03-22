@@ -1,0 +1,348 @@
+/* 🎬 CLEAN FUN PAGE STYLES - REAL MOVIES ONLY */
+
+/* Upload Success Messages */
+.upload-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,255,0,0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    animation: slideInRight 0.5s ease;
+}
+
+.upload-message.success {
+    background: rgba(40,167,69,0.9);
+    border-left: 4px solid #28a745;
+}
+
+.upload-message.error {
+    background: rgba(220,53,69,0.9);
+    border-left: 4px solid #dc3545;
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.close-message {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-message:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Movie Cards */
+.movie-card, .content-card {
+    background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: 15px;
+}
+
+.movie-card:hover, .content-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border-color: #e50914;
+}
+
+/* Poster Section */
+.movie-poster, .content-poster {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #000;
+}
+
+.movie-poster img, .content-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster img, .content-card:hover .content-poster img {
+    transform: scale(1.05);
+}
+
+/* Play Overlay */
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .play-overlay, .content-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-btn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.play-btn:hover {
+    background: #f40612;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+}
+
+/* Movie Info */
+.movie-info, .content-info {
+    padding: 15px;
+}
+
+.movie-title, .content-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.movie-meta, .content-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.movie-category, .content-category {
+    background: rgba(0,123,255,0.2) !important;
+    color: #007bff !important;
+}
+
+.movie-rating, .content-rating {
+    background: rgba(255,193,7,0.2) !important;
+    color: #ffc107 !important;
+}
+
+.movie-duration, .content-duration {
+    background: rgba(40,167,69,0.2) !important;
+    color: #28a745 !important;
+}
+
+.movie-year {
+    background: rgba(0,123,255,0.2) !important;
+    color: #007bff !important;
+}
+
+/* Stats */
+.movie-stats, .content-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+    font-size: 0.85em;
+    color: #999;
+}
+
+.views, .likes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Actions */
+.movie-actions, .content-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    background: linear-gradient(145deg, #333, #222);
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.like-btn:hover {
+    background: linear-gradient(145deg, #e91e63, #c2185b);
+    border-color: #e91e63;
+}
+
+.watch-btn:hover {
+    background: linear-gradient(145deg, #4caf50, #388e3c);
+    border-color: #4caf50;
+}
+
+.admin-btn:hover {
+    background: linear-gradient(145deg, #f44336, #d32f2f);
+    border-color: #f44336;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    border: 2px dashed #555;
+    grid-column: 1 / -1;
+    margin: 20px;
+}
+
+.empty-state h3 {
+    color: #ccc;
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.empty-state p {
+    color: #999;
+    margin: 0 0 20px 0;
+}
+
+.add-movie-btn {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-movie-btn:hover {
+    background: #f40612;
+    transform: scale(1.05);
+}
+
+/* No Trending Message */
+.no-trending {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,255,0,0.1);
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid rgba(0,255,0,0.3);
+}
+
+.no-trending h3 {
+    color: #28a745;
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+}
+
+.no-trending p {
+    color: #ccc;
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .movie-card, .content-card {
+        margin: 10px 0;
+    }
+    
+    .movie-poster, .content-poster {
+        height: 150px;
+    }
+    
+    .movie-title, .content-title {
+        font-size: 1.1em;
+    }
+    
+    .movie-actions, .content-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        margin: 2px 0;
+    }
+    
+    .upload-message {
+        right: 10px;
+        top: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-meta, .content-meta {
+        font-size: 0.8em;
+    }
+    
+    .movie-stats, .content-stats {
+        font-size: 0.8em;
+    }
+    
+    .action-btn {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+    
+    .upload-message {
+        position: fixed;
+        left: 5px;
+        right: 5px;
+        top: 5px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}

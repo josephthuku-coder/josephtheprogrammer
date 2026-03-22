@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Login - JOSEE'S FINEST</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .login-header {
+            margin-bottom: 30px;
+        }
+        .login-header h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .login-header p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+        }
+        .login-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #ff69b4;
+        }
+        .error-message {
+            background: linear-gradient(145deg, #f44336, #d32f2f);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+            font-weight: 600;
+        }
+        .lock-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #e50914;
+            text-shadow: 0 2px 4px rgba(229, 9, 20, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="lock-icon">🔐</div>
+        <div class="login-header">
+            <h1>Login</h1>
+            <p>Enter your credentials to access the system</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div id="errorMessage" class="error-message">
+                ❌ Incorrect username or password. Please try again.
+            </div>
+            
+            <button type="submit" class="login-btn">🔓 Login</button>
+        </form>
+        
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        // Simple login handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Simple authentication (you can customize this)
+            if (username === 'admin' && password === '4997G9749@j') {
+                // Redirect to admin panel
+                window.location.href = 'admin-panel.html';
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+                document.getElementById('username').focus();
+                
+                // Hide error after 3 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

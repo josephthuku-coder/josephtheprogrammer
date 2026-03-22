@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 JOSEE'S FINEST - Video Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-header {
+            background: linear-gradient(145deg, #e50914, #cc0812);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        .video-header h1 {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .video-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .video-controls {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            background: linear-gradient(145deg, #ff0050, #ff0030);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 80, 0.4);
+            background: linear-gradient(145deg, #ff0060, #ff0040);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        .video-player {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.3));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-placeholder h2 {
+            color: #e50914;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(229, 9, 20, 0.3);
+        }
+
+        .video-placeholder p {
+            color: #ccc;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .video-info {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-info h3 {
+            color: #ff0050;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .video-info p {
+            color: #ccc;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 2px 4px rgba(229, 9, 20, 0.3); }
+            to { text-shadow: 0 2px 20px rgba(229, 9, 20, 0.6); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .video-header h1 {
+                font-size: 1.8em;
+            }
+            
+            .video-controls {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <div class="video-header">
+            <h1>🎬 JOSEE'S FINEST</h1>
+            <p>Premium Video Entertainment Platform</p>
+        </div>
+
+        <div class="video-actions">
+            <button class="nav-btn" onclick="goToPage('fun.html')">
+                🎮 Browse Movies
+            </button>
+            <button class="nav-btn" onclick="testCompleteVideoPlayer()">
+                🧪 Complete Test
+            </button>
+            <button class="nav-btn" onclick="validateVideoUrl()">
+                🔍 Check URL
+            </button>
+        </div>
+
+        <div class="video-controls">
+            <button class="nav-btn" onclick="goToPage('quotes-fresh.html')">
+                📜 Quotes
+            </button>
+            <button class="nav-btn" onclick="goToPage('contact.html')">
+                📧 Contact
+            </button>
+            <button class="nav-btn" onclick="goToPage('admin-login.html')">
+                🔐 Admin
+            </button>
+        </div>
+
+        <div class="video-player" id="videoPlayer">
+            <div class="video-placeholder">
+                <h2>🎬 Welcome to JOSEE'S Video Player</h2>
+                <p>Experience premium entertainment with our custom video player. Navigate to the Fun Page to access our movie collection and enjoy seamless playback.</p>
+                <button class="nav-btn" onclick="goToPage('fun.html')">
+                    🎮 Browse Movies
+                </button>
+                <button class="nav-btn" onclick="testVideo()" style="background: linear-gradient(145deg, #4caf50, #45a049); margin-left: 10px;">
+                    🧪 Test Video
+                </button>
+            </div>
+        </div>
+
+        <div class="video-info">
+            <h3 id="videoTitle">🎬 Video Player</h3>
+            <p id="videoDescription">Your premium entertainment destination. Built with ❤️ by J.G</p>
+        </div>
+    </div>
+
+    <script>
+        // Validate video URL function
+        function validateVideoUrl() {
+            const videoUrl = getUrlParameter('video');
+            const title = getUrlParameter('title');
+            
+            console.log('🔍 Validating video URL...');
+            console.log('📋 Video URL:', videoUrl);
+            console.log('📋 Title:', title);
+            
+            if (videoUrl) {
+                // Test URL accessibility with different methods
+                console.log('🌐 Testing URL accessibility...');
+                
+                // Method 1: Direct fetch
+                fetch(videoUrl, { 
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    cache: 'no-cache'
+                })
+                    .then(response => {
+                        console.log('✅ Direct fetch successful:', response.status);
+                        console.log('📋 Content-Type:', response.headers.get('Content-Type'));
+                        console.log('📋 Content-Length:', response.headers.get('Content-Length'));
+                        
+                        if (response.ok) {
+                            alert(`✅ Video URL is valid!\n\nURL: ${videoUrl}\nStatus: ${response.status}\nContent-Type: ${response.headers.get('Content-Type') || 'Unknown'}\n\nThe video should play!`);
+                        } else {
+                            console.error('❌ URL not accessible:', response.status);
+                            alert(`⚠️ URL returned status: ${response.status}\n\nThis might be a CORS issue or the video file is temporarily unavailable.\n\nTry clicking the play button directly.`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('❌ Direct fetch failed:', error);
+                        
+                        // Method 2: Image test (often bypasses CORS)
+                        console.log('🖼️ Testing with image method...');
+                        const img = new Image();
+                        img.onload = () => {
+                            console.log('✅ Image load successful - URL is accessible');
+                            alert(`✅ Video URL is accessible!\n\nURL: ${videoUrl}\n\nThe image test worked, so the URL is valid.\nVideo should play when you click the play button.`);
+                        };
+                        img.onerror = () => {
+                            console.error('❌ Image test failed');
+                            alert(`⚠️ URL validation failed\n\nURL: ${videoUrl}\n\nThis might be:\n• CORS restriction\n• Network error\n• Invalid video format\n\nTry clicking the play button directly.`);
+                        };
+                        img.src = videoUrl;
+                    });
+            } else {
+                alert('❌ No video URL to validate!');
+            }
+        }
+
+        // Comprehensive test function
+        function testCompleteVideoPlayer() {
+            console.log('🧪 Running complete video player test...');
+            
+            // Test 1: Check video element support
+            const videoElement = document.createElement('video');
+            console.log('📋 Video element support:', !!videoElement.canPlayType);
+            
+            // Test 2: Check URL parameters
+            const videoUrl = getUrlParameter('video');
+            const title = getUrlParameter('title');
+            const type = getUrlParameter('type') || 'movie';
+            
+            console.log('📋 URL parameters:', { videoUrl, title, type });
+            
+            // Test 3: Try playing known working video
+            const testUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+            const testTitle = 'Big Buck Bunny - Complete Test';
+            const testType = 'movie';
+            
+            console.log('🧪 Testing with known working video...');
+            playVideo(testUrl, testTitle, testType);
+            
+            // Test 4: Check if current video has valid URL
+            if (videoUrl && videoUrl !== 'undefined' && videoUrl !== '') {
+                console.log('🔍 Validating current video URL...');
+                validateVideoUrl();
+            } else {
+                console.log('⚠️ No valid video URL in parameters');
+            }
+        }
+
+        // Get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Navigate to page
+        function goToPage(page) {
+            window.location.href = page;
+        }
+
+        // Load video from parameters
+        function loadVideoFromParams() {
+            const videoUrl = getUrlParameter('video');
+            const title = getUrlParameter('title');
+            const type = getUrlParameter('type') || 'movie';
+
+            console.log('🎬 Video Player Parameters:');
+            console.log('📋 Full URL:', window.location.href);
+            console.log('📋 Video URL:', videoUrl);
+            console.log('📋 Title:', title);
+            console.log('📋 Type:', type);
+
+            if (videoUrl && title) {
+                console.log('✅ Parameters valid, calling playVideo...');
+                playVideo(videoUrl, title, type);
+            } else {
+                console.log('📋 No video parameters found, showing welcome screen');
+            }
+        }
+
+        // Play video function
+        function playVideo(videoUrl, title, type = 'movie') {
+            console.log('🎬 Playing video:', { videoUrl, title, type });
+            
+            const player = document.getElementById('videoPlayer');
+            const titleElement = document.getElementById('videoTitle');
+            const descElement = document.getElementById('videoDescription');
+
+            // Update title and description
+            titleElement.textContent = `🎬 ${title}`;
+            descElement.textContent = `Now playing: ${title} - ${type.charAt(0).toUpperCase() + type.slice(1)} content from JOSEE'S FINEST collection`;
+
+            // Clear player and show loading
+            player.innerHTML = '<div class="video-placeholder loading"><h2>🎬 Loading...</h2><p>Please wait while we prepare your video...</p></div>';
+
+            // Add CORS headers and fix video source
+            const videoElement = document.createElement('video');
+            videoElement.controls = true;
+            videoElement.autoplay = false;
+            videoElement.muted = false;
+            videoElement.preload = 'metadata';
+            videoElement.playsInline = true;
+            videoElement.crossOrigin = 'anonymous'; // Add CORS support
+            videoElement.style.cssText = 'width: 100%; height: 100%; object-fit: contain; background: black;';
+
+            // Handle Firebase URLs and add CORS headers
+            let videoSource = videoUrl;
+            
+            // Convert YouTube URLs to embed format
+            if (videoUrl.includes('youtube.com/watch?v=')) {
+                const videoId = videoUrl.split('watch?v=')[1].split('&')[0];
+                videoSource = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
+                console.log('🎬 YouTube URL converted to embed format:', videoSource);
+                
+                // For YouTube, use iframe instead of video element
+                const iframeElement = document.createElement('iframe');
+                iframeElement.src = videoSource;
+                iframeElement.style.cssText = 'width: 100%; height: 100%; border: none; object-fit: contain;';
+                iframeElement.setAttribute('allowfullscreen', 'true');
+                iframeElement.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                
+                console.log('🎬 Using iframe for YouTube video');
+                
+                // Display YouTube iframe
+                player.innerHTML = '';
+                player.appendChild(iframeElement);
+                
+                // Update title
+                titleElement.textContent = `🎬 ${title}`;
+                descElement.textContent = `Now playing: ${title} - YouTube video from JOSEE'S FINEST collection`;
+                
+                return; // Exit early for YouTube videos
+            }
+            
+            // Handle short YouTube URLs (youtu.be)
+            if (videoUrl.includes('youtu.be/')) {
+                const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+                videoSource = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`;
+                console.log('🎬 Short YouTube URL converted to embed format:', videoSource);
+                
+                // For YouTube, use iframe instead of video element
+                const iframeElement = document.createElement('iframe');
+                iframeElement.src = videoSource;
+                iframeElement.style.cssText = 'width: 100%; height: 100%; border: none; object-fit: contain;';
+                iframeElement.setAttribute('allowfullscreen', 'true');
+                iframeElement.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                
+                console.log('🎬 Using iframe for short YouTube video');
+                
+                // Display YouTube iframe
+                player.innerHTML = '';
+                player.appendChild(iframeElement);
+                
+                // Update title
+                titleElement.textContent = `🎬 ${title}`;
+                descElement.textContent = `Now playing: ${title} - YouTube video from JOSEE'S FINEST collection`;
+                
+                return; // Exit early for YouTube videos
+            }
+            
+            // Check if it's a Firebase URL and add CORS headers
+            if (videoUrl.includes('firebasestorage.googleapis.com') || 
+                videoUrl.includes('googleapis.com') ||
+                videoUrl.includes('firebaseio.com')) {
+                
+                console.log('🔥 Firebase URL detected, adding CORS handling');
+                
+                // Create a CORS-friendly video element with proper attributes
+                videoElement.setAttribute('crossorigin', 'anonymous');
+                videoElement.setAttribute('preload', 'metadata');
+                
+                // For Firebase URLs, we need to handle them differently
+                const corsVideoElement = document.createElement('video');
+                corsVideoElement.controls = true;
+                corsVideoElement.autoplay = false;
+                corsVideoElement.crossOrigin = 'anonymous';
+                corsVideoElement.style.cssText = 'width: 100%; height: 100%; object-fit: contain; background: black;';
+                
+                const source = document.createElement('source');
+                source.src = videoUrl;
+                source.type = 'video/mp4';
+                source.setAttribute('crossorigin', 'anonymous');
+                
+                corsVideoElement.appendChild(source);
+                videoElement = corsVideoElement;
+                
+                console.log('🔥 Using CORS-enabled video element for Firebase URL');
+            }
+            
+            // Add multiple source formats for compatibility
+            const mp4Source = document.createElement('source');
+            mp4Source.src = videoSource; // Use videoSource which may be modified for CORS
+            mp4Source.type = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
+            mp4Source.setAttribute('crossorigin', 'anonymous');
+            
+            const webmSource = document.createElement('source');
+            webmSource.src = videoSource.replace('.mp4', '.webm');
+            webmSource.type = 'video/webm; codecs="vp8,vorbis"';
+            webmSource.setAttribute('crossorigin', 'anonymous');
+            
+            videoElement.appendChild(mp4Source);
+            videoElement.appendChild(webmSource);
+            
+            // Modern video event handling
+            videoElement.addEventListener('loadstart', () => {
+                console.log('📋 Video load start detected');
+            });
+
+            videoElement.addEventListener('loadedmetadata', () => {
+                console.log('📋 Video metadata loaded');
+                console.log('📋 Duration:', videoElement.duration);
+                console.log('📋 Dimensions:', videoElement.videoWidth + 'x' + videoElement.videoHeight);
+                console.log('📋 Ready state:', videoElement.readyState);
+            });
+
+            videoElement.addEventListener('loadeddata', () => {
+                console.log('📋 Video data loaded, ready state:', videoElement.readyState);
+                if (videoElement.readyState >= 2) {
+                    console.log('✅ Video ready for playback');
+                    tryPlayVideo(videoElement);
+                }
+            });
+
+            videoElement.addEventListener('canplaythrough', () => {
+                console.log('✅ Video can play through, ready for playback');
+                tryPlayVideo(videoElement);
+            });
+
+            videoElement.addEventListener('canplay', () => {
+                console.log('✅ Video can play, displaying player');
+                player.innerHTML = '';
+                player.appendChild(videoElement);
+                
+                // Add click-to-play overlay for autoplay policy
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    z-index: 10;
+                    backdrop-filter: blur(5px);
+                `;
+                overlay.innerHTML = `
+                    <div style="text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        <div style="font-size: 4em; margin-bottom: 20px; animation: pulse 2s infinite;">▶️</div>
+                        <div style="font-size: 1.8em; font-weight: bold;">Click to Play</div>
+                        <div style="font-size: 1em; opacity: 0.9; margin-top: 10px;">${title}</div>
+                    </div>
+                `;
+                
+                overlay.addEventListener('click', () => {
+                    console.log('🖱️ User clicked to play video');
+                    overlay.remove();
+                    tryPlayVideo(videoElement);
+                });
+                
+                player.appendChild(overlay);
+                
+                // Try to play video when ready
+                setTimeout(() => {
+                    tryPlayVideo(videoElement);
+                }, 1000);
+            });
+
+            // Helper function to try playing video
+            function tryPlayVideo(videoElement) {
+                const playPromise = videoElement.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('✅ Video playing successfully');
+                        // Remove any overlay
+                        const overlay = player.querySelector('div[style*="position: absolute"]');
+                        if (overlay) overlay.remove();
+                    }).catch(error => {
+                        console.error('❌ Play failed:', error.name, error.message);
+                        
+                        // Show user-friendly error message
+                        const errorDiv = document.createElement('div');
+                        errorDiv.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: rgba(229, 9, 20, 0.95);
+                            color: white;
+                            padding: 20px;
+                            border-radius: 10px;
+                            z-index: 1000;
+                            max-width: 400px;
+                            text-align: center;
+                        `;
+                        errorDiv.innerHTML = `
+                            <h3>⚠️ Playback Error</h3>
+                            <p>${error.message}</p>
+                            <p>Please try a different video or check your connection.</p>
+                            <button onclick="this.parentElement.remove()" style="
+                                background: white; color: #e50914; 
+                                border: none; padding: 10px 20px; 
+                                border-radius: 5px; cursor: pointer;
+                                margin-top: 15px; font-weight: bold;
+                            ">Close</button>
+                        `;
+                        document.body.appendChild(errorDiv);
+                        
+                        setTimeout(() => {
+                            if (errorDiv.parentElement) {
+                                errorDiv.remove();
+                            }
+                        }, 5000);
+                    });
+                } else {
+                    console.log('✅ Legacy play() method worked');
+                }
+            }
+
+            videoElement.addEventListener('error', (e) => {
+                console.error('❌ Video error:', e);
+                player.innerHTML = `
+                    <div class="video-placeholder">
+                        <h2>⚠️ Video Loading Error</h2>
+                        <p>Unable to load the video. The video file may not be available or the format is not supported.</p>
+                        <p><strong>Title:</strong> ${title}</p>
+                        <p><strong>Type:</strong> ${type}</p>
+                        <p><strong>URL:</strong> ${videoUrl}</p>
+                        <button class="nav-btn" onclick="goToPage('fun.html')">
+                            🎮 Browse More Movies
+                        </button>
+                    </div>
+                `;
+            });
+
+            // Replace player content with video element
+            player.innerHTML = '';
+            player.appendChild(videoElement);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVideoFromParams();
+            
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'Escape':
+                        goToPage('fun.html');
+                        break;
+                    case 'h':
+                    case 'H':
+                        goToPage('index.html');
+                        break;
+                    case 'f':
+                    case 'F':
+                        goToPage('fun.html');
+                        break;
+                }
+            });
+
+            console.log('🎬 JOSEE\'S Video Player initialized');
+            console.log('📋 Available shortcuts: ESC (Back to Fun), H (Home), F (Fun Page)');
+        });
+
+        // Handle page visibility
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause video when page is not visible
+                const video = document.querySelector('video');
+                if (video && !video.paused) {
+                    video.pause();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

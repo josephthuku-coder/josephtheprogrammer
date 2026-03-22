@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Josee</title>
+
+<link rel="stylesheet" href="CSS/style-clean.css">
+
+<style>
+.contact-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.contact-section h1 {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #00f7ff, #00ff9f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-section > p {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 50px;
+  opacity: 0.9;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+.contact-form {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 247, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #00f7ff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #00f7ff, #00ff9f);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 247, 255, 0.4);
+}
+
+.contact-info {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 247, 255, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.contact-info h3 {
+  color: #00f7ff;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.contact-info-item {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-info-item i {
+  width: 20px;
+  color: #00f7ff;
+  font-size: 18px;
+}
+
+.social {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.social h3 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #00f7ff;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.social a:hover {
+  background: rgba(0, 247, 255, 0.1);
+  border-color: #00f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 247, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .contact-section h1 {
+    font-size: 36px;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+<nav class="navbar">
+
+<h2>@JOSEE'S FINEST</h2>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="login.html">Login</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+
+<h1>Contact Me</h1>
+
+<p>Feel free to reach out, collaborate, or ask questions.</p>
+
+<div class="contact-container">
+
+<div class="contact-form-container">
+<form id="contactForm" class="contact-form">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<input type="text" name="subject" placeholder="Subject (Optional)">
+
+<textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+
+<button type="submit">📧 Send Message</button>
+
+</form>
+<div id="contactMessage" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;"></div>
+
+<!-- Admin Access Link -->
+<div style="text-align: center; margin-top: 20px; padding: 15px;">
+    <p style="color: #ccc; margin-bottom: 10px;">Admin Access:</p>
+    <a href="admin-login.html" style="background: linear-gradient(145deg, #ff0050, #ff0030); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; margin: 5px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 20px rgba(255, 0, 80, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onclick="console.log('Admin link clicked'); window.location.href='admin-login.html'; return false;">
+        🔐 Admin Login
+    </a>
+    <a href="index.html" style="background: linear-gradient(145deg, #4caf50, #45a049); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; margin: 5px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 20px rgba(76, 175, 80, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        🏠 Home
+    </a>
+    <button onclick="testNavigation()" style="background: linear-gradient(145deg, #2196f3, #1976d2); color: white; padding: 12px 24px; border-radius: 8px; border: none; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; margin: 5px; cursor: pointer;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 20px rgba(33, 150, 243, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        🔍 Test Nav
+    </button>
+</div>
+</div>
+
+<div class="contact-info">
+<h3>Get in Touch</h3>
+<div class="contact-info-item">
+<span>📧</span>
+<span>josee@example.com</span>
+</div>
+<div class="contact-info-item">
+<span>📱</span>
+<span>+1 (555) 123-4567</span>
+</div>
+<div class="contact-info-item">
+<span>📍</span>
+<span>San Francisco, CA</span>
+</div>
+<div class="contact-info-item">
+<span>🕐</span>
+<span>Mon-Fri, 9AM-6PM PST</span>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SOCIAL LINKS -->
+
+<section class="social">
+
+<h3>Connect With Me</h3>
+
+<div class="social-links">
+<a href="#">🚀 GitHub</a>
+<a href="#">💼 LinkedIn</a>
+<a href="#">📧 Email</a>
+<a href="#">🌐 Portfolio</a>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 JOSEE'S FINEST | Built by J.G</p>
+
+</footer>
+
+<script src="JS/code-rain.js"></script>
+<script>
+// Test navigation function
+function testNavigation() {
+    console.log('Testing navigation...');
+    console.log('Current URL:', window.location.href);
+    console.log('Attempting to navigate to admin-login.html');
+    
+    // Test if file exists by trying to fetch it
+    fetch('admin-login.html')
+        .then(response => {
+            console.log('admin-login.html exists:', response.ok);
+            if (response.ok) {
+                window.location.href = 'admin-login.html';
+            } else {
+                alert('admin-login.html not found. Response status:', response.status);
+            }
+        })
+        .catch(error => {
+            console.error('Navigation test failed:', error);
+            alert('Navigation error. Check console for details.');
+        });
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const messageDiv = document.getElementById('contactMessage');
+    
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.textContent = '📧 Sending...';
+    
+    // Get form data
+    const formData = new FormData(form);
+    const messageData = {
+        id: Date.now(),
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject') || 'Contact Form Message',
+        message: formData.get('message'),
+        timestamp: Date.now(),
+        replied: false,
+        read: false
+    };
+    
+    // Save to Firebase and localStorage
+    try {
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+            authDomain: "josees-finest.firebaseapp.com",
+            projectId: "josees-finest",
+            storageBucket: "josees-finest.firebasestorage.app",
+            messagingSenderId: "1023918542701",
+            appId: "1:1023918542701:web:e087b978b61eaba1001464",
+            measurementId: "G-Z8XPQ46GYG"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const db = firebase.firestore();
+        
+        // Save to Firebase
+        await db.collection('contactMessages').add({
+            ...messageData,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        console.log('Contact message saved to Firebase:', messageData);
+        
+        // Also save to localStorage as backup
+        const contactMessages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        contactMessages.push(messageData);
+        localStorage.setItem('contactMessages', JSON.stringify(contactMessages));
+        
+        // Show success message
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = 'linear-gradient(145deg, #4caf50, #45a049)';
+        messageDiv.style.color = 'white';
+        messageDiv.innerHTML = '✅ Message sent successfully! We\'ll respond soon.';
+        form.reset();
+        
+        // Try to send email notification (optional, won't fail if it doesn't work)
+        try {
+            await fetch('contact-handler.php', {
+                method: 'POST',
+                body: formData
+            });
+        } catch (emailError) {
+            console.log('Email notification failed, but message saved:', emailError);
+        }
+        
+    } catch (error) {
+        console.error('Error saving message:', error);
+        messageDiv.style.display = 'block';
+        messageDiv.style.background = 'linear-gradient(145deg, #f44336, #d32f2f)';
+        messageDiv.style.color = 'white';
+        messageDiv.innerHTML = '❌ Failed to save message. Please try again.';
+    } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = '📧 Send Message';
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
+</body>
+
+</html>

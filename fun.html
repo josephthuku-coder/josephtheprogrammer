@@ -1,0 +1,3026 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Fun Zone - JOSEE'S FINEST</title>
+
+<link rel="stylesheet" href="css/style-clean.css">
+
+<style>
+/* Enhanced Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.navbar h2 {
+    color: #00f7ff;
+    letter-spacing: 1px;
+    font-size: 18px;
+    margin: 0;
+    padding: 15px 20px;
+  color: #00f7ff;
+  letter-spacing: 2px;
+  font-size: 24px;
+  text-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  color: #00f7ff;
+  background: rgba(0, 247, 255, 0.1);
+  border-color: rgba(0, 247, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+}
+
+/* Fun Zone Content Styling */
+.fun-zone-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.fun-zone-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fun-zone-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+@keyframes rainbow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.search-container {
+  max-width: 500px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 247, 255, 0.3);
+  border-radius: 50px;
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #00f7ff;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+}
+
+/* Professional Filter Tabs */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 247, 255, 0.3);
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.filter-tab:hover::before {
+  left: 100%;
+}
+
+.filter-tab:hover {
+  border-color: #00f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+}
+
+.filter-tab.active {
+  background: linear-gradient(135deg, #00f7ff, #00ff9f);
+  color: #000;
+  border-color: transparent;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+.section-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+/* Media Container Styling */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.media-card {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 247, 255, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00f7ff, #00ff9f, #ff6b6b, #ff8e53);
+  background-size: 300% 100%;
+  animation: gradient-flow 3s ease-in-out infinite;
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.media-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 247, 255, 0.3);
+  border-color: rgba(0, 247, 255, 0.5);
+}
+
+.media-card h3 {
+  color: #00f7ff;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.media-card iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  border: none;
+}
+
+/* Recommendation Card Styles */
+.recommendation-card {
+  border: 2px solid rgba(76, 175, 80, 0.5);
+  background: linear-gradient(145deg, rgba(76, 175, 80, 0.1), rgba(0, 0, 0, 0.7));
+}
+
+.recommendation-card::before {
+  background: linear-gradient(45deg, #4caf50, #45a049, #2e7d32);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(76, 175, 80, 0.4);
+  border-color: rgba(76, 175, 80, 0.7);
+}
+
+.recommendation-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(145deg, #4caf50, #45a049);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4); }
+  50% { box-shadow: 0 4px 25px rgba(76, 175, 80, 0.6); }
+  100% { box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4); }
+}
+
+.movie-description {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.media-card .media-category {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(0, 247, 255, 0.2);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 20px;
+  color: #00f7ff;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.like-button {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.like-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #00f7ff;
+}
+
+.empty-state p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.empty-state button {
+  background: linear-gradient(135deg, #00f7ff, #00ff9f);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.empty-state button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 247, 255, 0.4);
+}
+
+/* AI Assistant Tab */
+.ai-tab {
+  background: linear-gradient(135deg, #ff69b4, #ff1493) !important;
+  border-color: rgba(255, 105, 180, 0.5) !important;
+  animation: aiGlow 2s ease-in-out infinite alternate;
+}
+
+/* TikTok Tab */
+.tiktok-tab {
+  background: linear-gradient(135deg, #000000, #ff0050) !important;
+  border-color: rgba(255, 0, 80, 0.5) !important;
+  animation: tiktokGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes tiktokGlow {
+  0% { box-shadow: 0 0 20px rgba(255, 0, 80, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(255, 0, 80, 0.6); }
+}
+
+/* Instagram Tab */
+.instagram-tab {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045) !important;
+  border-color: rgba(131, 58, 180, 0.5) !important;
+  animation: instagramGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes instagramGlow {
+  0% { box-shadow: 0 0 20px rgba(131, 58, 180, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(253, 29, 29, 0.6); }
+}
+
+@keyframes aiGlow {
+  0% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(255, 105, 180, 0.6); }
+}
+
+/* AI Panel Styles */
+.ai-panel {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.95), rgba(255, 20, 147, 0.95));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 30px 0;
+  box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.ai-panel-header h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.ai-section {
+  margin-bottom: 25px;
+}
+
+.ai-section h4 {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ai-toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ai-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.ai-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ai-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #ff69b4;
+}
+
+.notification-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notification-settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+.notification-settings input,
+.notification-settings select {
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+}
+
+.preference-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.tag.active {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: white;
+  transform: scale(1.05);
+}
+
+.tag:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ai-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.ai-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-btn.primary {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  color: #ff1493;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.ai-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+}
+
+.ai-btn.secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.ai-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.ai-btn.tertiary {
+  background: rgba(0, 247, 255, 0.2);
+  color: #00f7ff;
+  border: 2px solid rgba(0, 247, 255, 0.4);
+}
+
+.ai-btn.tertiary:hover {
+  background: rgba(0, 247, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.ai-status {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff4444;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online .status-dot {
+  background: #44ff44;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* AI Notification Modal */
+.ai-notification-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.95), rgba(255, 20, 147, 0.95));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-header h3 {
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.modal-body {
+  color: white;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.modal-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-btn.approve {
+  background: linear-gradient(135deg, #44ff44, #00cc00);
+  color: white;
+}
+
+.modal-btn.reject {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+}
+
+.modal-btn.later {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.modal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+.related-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Video Preview Styles */
+.video-preview {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
+  border-radius: 12px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  transition: all 0.3s ease;
+}
+
+.video-preview:hover {
+  border-color: rgba(255, 105, 180, 0.6);
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+  transform: translateY(-2px);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  background: rgba(255, 105, 180, 0.8);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.play-button:hover {
+  background: rgba(255, 105, 180, 1);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.info-views, .info-likes {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.watch-button {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.watch-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+  background: linear-gradient(135deg, #ff1493, #c71585);
+}
+
+/* Theater mode animation */
+.video-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.video-preview:hover::before {
+  left: 100%;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  text-align: center;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+
+.loading-indicator::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 247, 255, 0.3);
+  border-top: 2px solid #00f7ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Approved badge */
+.approved-badge {
+  background: linear-gradient(135deg, #00ff9f, #00f7ff);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin: 4px 0;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Media source and rating */
+.media-source {
+  color: rgba(255, 105, 180, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.media-rating {
+  color: #ffd700;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.media-duration {
+  color: rgba(0, 247, 255, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+/* Media actions */
+.media-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.theatre-button {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.theatre-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+}
+
+.watch-button {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.watch-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+}
+
+/* Administrator Delete Button */
+.admin-delete-button {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-delete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+  background: linear-gradient(135deg, #ff6666, #ff0000);
+}
+
+.admin-delete-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.admin-delete-button:hover::before {
+  left: 100%;
+}
+
+/* Admin Delete Modal */
+.admin-delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.admin-delete-content {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.1));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-delete-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+  background-size: 300% 100%;
+  animation: gradient-flow 3s ease-in-out infinite;
+}
+
+.admin-delete-content h3 {
+  color: #ff69b4;
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.admin-delete-content p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.admin-delete-content input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 14px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.admin-delete-content input:focus {
+  outline: none;
+  border-color: rgba(255, 105, 180, 0.6);
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.admin-delete-content input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-delete-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+}
+
+.admin-hint {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Professional Video Theatre */
+.professional-video-theatre {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.professional-video-theatre.theatre-active {
+  opacity: 1;
+}
+
+.theatre-overlay {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  max-width: 1400px;
+  max-height: 800px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.1));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+.theatre-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.theatre-header {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.2));
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 105, 180, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theatre-title h2 {
+  color: #ff69b4;
+  font-size: 20px;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.theatre-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.theatre-source,
+.theatre-rating,
+.theatre-duration,
+.theatre-approved {
+  background: rgba(0, 247, 255, 0.2);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.theatre-close {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  border: none;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theatre-close:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff6666, #ff0000);
+}
+
+.theatre-content {
+  display: flex;
+  height: calc(100% - 80px);
+  gap: 20px;
+  padding: 20px;
+}
+
+.video-wrapper {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.theatre-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.theatre-sidebar {
+  width: 350px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.theatre-info h3 {
+  color: #00f7ff;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.info-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.info-value {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.theatre-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.theatre-action-btn {
+  background: linear-gradient(135deg, #00ff9f, #00f7ff);
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.theatre-action-btn.like {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+}
+
+.theatre-action-btn.share {
+  background: linear-gradient(135deg, #4a90e2, #7b68ee);
+  color: white;
+}
+
+.theatre-action-btn.delete {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+}
+
+.theatre-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Theatre Notifications */
+.theatre-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10002;
+  animation: slideInRight 0.3s ease;
+}
+
+.theatre-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theatre-notification.success .theatre-notification-content {
+  background: linear-gradient(135deg, #00ff9f, #00f7ff);
+  color: black;
+}
+
+.theatre-notification.error .theatre-notification-content {
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: white;
+}
+
+.theatre-notification.info .theatre-notification-content {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+}
+
+.theatre-notification-icon {
+  font-size: 16px;
+}
+
+.theatre-notification-text {
+  font-size: 14px;
+}
+
+/* Welcome State */
+.welcome-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.05), rgba(255, 20, 147, 0.05));
+  border-radius: 20px;
+  border: 1px solid rgba(255, 105, 180, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.welcome-state h3 {
+  color: #ff69b4;
+  font-size: 32px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-state p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.tab-hints {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.tab-hint {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: rgba(0, 247, 255, 0.1);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.tab-hint:hover {
+  background: rgba(0, 247, 255, 0.2);
+  border-color: rgba(0, 247, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.tab-emoji {
+  font-size: 24px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.tab-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.add-content-btn {
+  background: linear-gradient(135deg, #00ff9f, #00f7ff);
+  border: none;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-content-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 247, 255, 0.4);
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.1));
+  border-radius: 16px;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  backdrop-filter: blur(10px);
+  grid-column: 1 / -1;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.section-emoji {
+  font-size: 32px;
+}
+
+.section-title h2 {
+  color: #ff69b4;
+  font-size: 28px;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Tab System */
+.tab-container {
+  margin: 30px 0;
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 105, 180, 0.2);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border-color: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+}
+
+.tab-btn.social-tab {
+  background: rgba(0, 247, 255, 0.1);
+  border-color: rgba(0, 247, 255, 0.3);
+}
+
+.tab-btn.social-tab:hover {
+  background: rgba(0, 247, 255, 0.2);
+  border-color: rgba(0, 247, 255, 0.5);
+}
+
+.tab-btn.social-tab.active {
+  background: linear-gradient(135deg, #00f7ff, #0099cc);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 247, 255, 0.4);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeInUp 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-header {
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 20, 147, 0.1));
+  border-radius: 16px;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.tab-header h2 {
+  color: #ff69b4;
+  font-size: 28px;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tab-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0;
+  font-style: italic;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Social Media Grid */
+.social-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.social-media-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.social-media-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+  border-color: rgba(255, 105, 180, 0.5);
+}
+
+.social-media-video {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 8px;
+}
+
+.social-media-info {
+  padding: 15px;
+}
+
+.social-media-info h3 {
+  color: #ff69b4;
+  font-size: 16px;
+  margin: 0 0 10px 0;
+}
+
+.social-media-stats {
+  display: flex;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+.loading-indicator p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  margin: 0;
+}
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+  <h2>@JOSEE'S FINEST</h2>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="projects.html">🚀 Projects</a></li>
+    <li><a href="contact.html">📧 Contact</a></li>
+    <li><a href="fun.html">🎉 Fun</a></li>
+    <li><a href="quotes.html">💭 Quotes</a></li>
+    <li><a href="professional.html">💼 Professional</a></li>
+  </ul>
+</header>
+
+<div class="fun-zone-container">
+  <div class="fun-zone-header">
+    <h1>FUN ZONE 🎉</h1>
+    <p>Entertainment, movies, videos, and music - all in one place!</p>
+    <div style="text-align: center; margin: 20px 0;">
+      <a href="admin-login.html" style="background: linear-gradient(145deg, #e50914, #cc0812); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; transition: all 0.3s ease;">🔧 Admin Dashboard</a>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchMedia" placeholder="🔍 Search content..." onkeyup="searchFirebaseMovies()">
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <div class="left-panel">
+      <div class="tab-navigation">
+        <button class="tab-btn active" onclick="switchTab('all')">🌟 All</button>
+        <button class="tab-btn" onclick="switchTab('movie')">🎬 Movies</button>
+        <button class="tab-btn" onclick="switchTab('music')">🎵 Music</button>
+        <button class="tab-btn" onclick="switchTab('video')">📺 Videos</button>
+        <button class="tab-btn" onclick="switchTab('documentary')">📖 Documentaries</button>
+        <button class="tab-btn social-tab" onclick="switchTab('tiktok')">🎵 TikTok</button>
+        <button class="tab-btn social-tab" onclick="switchTab('instagram')">📷 Instagram</button>
+      </div>
+      
+      <!-- Firebase Status -->
+      <div class="firebase-status">
+        <div id="firebaseStatus" class="status">🔄 Initializing...</div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="tab-content-container">
+        <div id="all-tab" class="tab-content active">
+          <div class="tab-header">
+            <h2>🌟 All Content</h2>
+            <p>Complete collection of all content types</p>
+          </div>
+          <div id="all-content" class="movie-grid"></div>
+        </div>
+
+        <div id="movie-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>🎬 Movie Section</h2>
+            <p>Action, Comedy, Drama, Sci-Fi, Romance & Thriller</p>
+          </div>
+          <div id="movie-content" class="movie-grid"></div>
+        </div>
+
+        <div id="music-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>🎵 Music Section</h2>
+            <p>Your favorite songs and artists</p>
+          </div>
+          <div id="music-content" class="movie-grid"></div>
+        </div>
+
+        <div id="video-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>📺 Video Section</h2>
+            <p>Gaming, Education, Entertainment, News & Sports</p>
+          </div>
+          <div id="video-content" class="movie-grid"></div>
+        </div>
+
+        <div id="documentary-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>📖 Documentary Section</h2>
+            <p>Educational and informative content</p>
+          </div>
+          <div id="documentary-content" class="movie-grid"></div>
+        </div>
+
+        <div id="tiktok-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>🎵 TikTok</h2>
+            <p>Limitless TikTok videos with real fetching</p>
+            
+            <!-- Bulk Selection Controls -->
+            <div class="bulk-controls" style="margin: 20px 0; padding: 15px; background: linear-gradient(145deg, #2d2d2d, #1a1a1a); border-radius: 10px; border: 1px solid #333;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <button id="bulkModeToggle" class="control-button" onclick="toggleBulkMode()" style="background: linear-gradient(145deg, #2196f3, #1976d2); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                    📦 BULK SELECT
+                  </button>
+                  <button id="selectAllBtn" class="control-button" onclick="selectAllVideos()" style="background: linear-gradient(145deg, #4caf50, #388e3c); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; display: none;">
+                    ✅ SELECT ALL
+                  </button>
+                  <button id="deselectAllBtn" class="control-button" onclick="deselectAllVideos()" style="background: linear-gradient(145deg, #ff9800, #f57c00); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; display: none;">
+                    ❌ DESELECT ALL
+                  </button>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <span id="selectedCount" style="color: #00f7ff; font-weight: bold; display: none;">
+                    Selected: 0 videos
+                  </span>
+                  <button id="bulkDeleteBtn" class="control-button" onclick="promptBulkDelete()" style="background: linear-gradient(145deg, #f44336, #d32f2f); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; display: none;">
+                    🗑️ DELETE SELECTED
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="tiktok-content" class="social-media-grid"></div>
+        </div>
+
+        <div id="instagram-tab" class="tab-content">
+          <div class="tab-header">
+            <h2>📷 Instagram</h2>
+            <p>Beautiful Instagram content</p>
+          </div>
+          <div id="instagram-content" class="social-media-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/ai-recommendations-clean.js"></script>
+<script src="js/social-media.js"></script>
+<script src="js/tiktok-api-integration.js"></script>
+<link rel="stylesheet" href="CSS/movie-integration-clean.css">
+<link rel="stylesheet" href="CSS/platform-launcher.css">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+<script>
+        // Firebase configuration (directly embedded)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+            authDomain: "josees-finest.firebaseapp.com",
+            projectId: "josees-finest",
+            storageBucket: "josees-finest.firebasestorage.app",
+            messagingSenderId: "1023918542701",
+            appId: "1:1023918542701:web:e087b978b61eaba1001464",
+            measurementId: "G-Z8XPQ46GYG"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const contentCollection = db.collection('content');
+        let allContent = [];
+        
+        function updateFirebaseStatus(message, isError = false) {
+            const status = document.getElementById('firebaseStatus');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            if (status) {
+                status.textContent = message;
+                status.style.color = isError ? '#ff4444' : '#4CAF50';
+                status.style.fontWeight = 'bold';
+            }
+        }
+        
+        // Initialize Firebase and load content
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔥 Initializing Firebase and loading content...');
+            
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+                authDomain: "josees-finest.firebaseapp.com",
+                projectId: "josees-finest",
+                storageBucket: "josees-finest.firebasestorage.app",
+                messagingSenderId: "1023918542701",
+                appId: "1:1023918542701:web:e087b978b61eaba1001464",
+                measurementId: "G-Z8XPQ46GYG"
+            };
+            
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+                console.log('✅ Firebase initialized successfully');
+            }
+            
+            // Load content from Firebase
+            loadContentFromFirebase();
+            
+            // Add refresh button after a short delay
+            setTimeout(() => {
+                addRefreshButton();
+            }, 2000);
+        });
+        
+        // Load content from Firebase
+        async function loadContentFromFirebase() {
+            console.log('🔥 Loading content from Firebase...');
+            updateFirebaseStatus('🔄 Connecting to Firebase...');
+            
+            try {
+                const db = firebase.firestore();
+                const contentCollection = db.collection('content');
+                
+                console.log('📋 Fetching content from Firestore...');
+                const snapshot = await contentCollection.orderBy('createdAt', 'desc').get();
+                console.log('Snapshot received, size:', snapshot.size);
+                
+                allContent = [];
+                snapshot.forEach(doc => {
+                    const content = doc.data();
+                    content.id = doc.id;
+                    allContent.push(content);
+                    console.log('Content loaded:', content.title, content.type);
+                });
+                
+                console.log('Total content loaded:', allContent.length);
+                
+                // Check if new content was added
+                if (allContent.length > 0) {
+                    const latestContent = allContent[0]; // Most recent
+                    const latestTime = latestContent.createdAt ? latestContent.createdAt.toDate() : new Date();
+                    const now = new Date();
+                    const timeDiff = (now - latestTime) / 1000 / 60; // Minutes
+                    
+                    if (timeDiff < 5) {
+                        console.log('🆕 New content detected! Added within last 5 minutes');
+                        updateFirebaseStatus(`🆕 New content found! Loaded ${allContent.length} items successfully`);
+                    } else {
+                        updateFirebaseStatus(`✅ Loaded ${allContent.length} items successfully`);
+                    }
+                } else {
+                    updateFirebaseStatus('📋 No content found in Firebase');
+                }
+                
+                displayContentInAllSections();
+                
+            } catch (error) {
+                console.error('Load error:', error);
+                updateFirebaseStatus(`❌ Failed to load content: ${error.message}`, true);
+            }
+        }
+        
+        // Get approved recommendations from localStorage
+        function getApprovedRecommendations() {
+            const saved = localStorage.getItem('recommendations');
+            if (saved) {
+                const allRecs = JSON.parse(saved);
+                return allRecs.filter(rec => rec.status === 'approved');
+            }
+            return [];
+        }
+        
+        // Display content in all sections
+        function displayContentInAllSections() {
+            console.log('Displaying content in all sections...');
+            
+            // Load approved recommendations from localStorage
+            const approvedRecommendations = getApprovedRecommendations();
+            console.log('Approved recommendations:', approvedRecommendations.length);
+            
+            const sections = [
+                'all-content', 
+                'movie-content', 
+                'music-content', 
+                'video-content', 
+                'documentary-content',
+                'tiktok-content',
+                'instagram-content'
+            ];
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                console.log('Processing section:', sectionId);
+                
+                if (section) {
+                    section.innerHTML = '';
+                    section.className = sectionId.includes('tiktok') || sectionId.includes('instagram') ? 'social-media-grid' : 'movie-grid';
+                    
+                    // Filter content for this section
+                    let filteredContent = allContent;
+                    if (sectionId !== 'all-content') {
+                        const contentType = sectionId.replace('-content', '');
+                        filteredContent = allContent.filter(content => content.type === contentType);
+                        console.log(`Filtered ${sectionId}: ${filteredContent.length} items`);
+                    } else {
+                        console.log(`All content: ${filteredContent.length} items`);
+                    }
+                    
+                    // Add approved recommendations to the content
+                    if (sectionId === 'movie-content' || sectionId === 'music-content' || sectionId === 'all-content') {
+                        const sectionType = sectionId === 'all-content' ? 'all' : sectionId.replace('-content', '');
+                        const approvedForSection = approvedRecommendations.filter(rec => 
+                            sectionType === 'all' || rec.type === sectionType
+                        );
+                        
+                        approvedForSection.forEach(rec => {
+                            filteredContent.push({
+                                id: `rec_${rec.id}`,
+                                title: rec.title,
+                                type: rec.type,
+                                description: rec.description,
+                                url: rec.url || '#',
+                                thumbnail: rec.thumbnail || `https://picsum.photos/seed/${rec.title}/300/400.jpg`,
+                                isApproved: true,
+                                isRecommendation: true
+                            });
+                        });
+                        
+                        console.log(`Added ${approvedForSection.length} approved recommendations to ${sectionId}`);
+                    }
+                    
+                    if (filteredContent.length === 0) {
+                        section.innerHTML = `
+                            <div style="text-align: center; padding: 40px; color: #999; grid-column: 1 / -1;">
+                                <h3>📽️ No content found</h3>
+                                <p>Upload content using the Admin Dashboard</p>
+                            </div>
+                        `;
+                    } else {
+                        filteredContent.forEach(content => {
+                            const contentCard = createContentCard(content);
+                            section.appendChild(contentCard);
+                        });
+                        console.log(`Added ${filteredContent.length} content cards to ${sectionId}`);
+                    }
+                } else {
+                    console.error('Section not found:', sectionId);
+                }
+            });
+        }
+        
+        // Create content card
+        function createContentCard(content) {
+            const card = document.createElement('div');
+            card.className = content.isRecommendation ? 'media-card recommendation-card' : 'media-card';
+            
+            const recommendationBadge = content.isRecommendation ? 
+                '<div class="recommendation-badge">🤖 AI Approved</div>' : '';
+            
+            card.innerHTML = `
+                ${recommendationBadge}
+                <div class="movie-poster">
+                    <img src="${content.thumbnail || `https://picsum.photos/seed/${content.id}/180/75.jpg`}" alt="${content.title}">
+                    <div class="play-overlay">
+                        <button class="play-btn" onclick="openVideoTheatreImmediately('${content.id}')">
+                            🎬 PLAY
+                        </button>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">${content.title}</h3>
+                    <div class="movie-meta">
+                        <span class="movie-year">${content.year || 'Unknown'}</span>
+                        <span class="movie-rating">⭐ ${content.rating || 'N/A'}</span>
+                        <span class="movie-duration">⏱️ ${content.duration || 'Unknown'}</span>
+                    </div>
+                    <p class="movie-description">${content.description || ''}</p>
+                    <div class="movie-stats">
+                        <span class="views">👁️ ${formatNumber(content.views || 0)}</span>
+                        <span class="likes" id="likes-${content.id}">❤️ ${formatNumber(content.likes || 0)}</span>
+                    </div>
+                </div>
+                <div class="external-actions">
+                    <button class="action-btn like-btn" onclick="likeContent('${content.id}')">
+                        ❤️ LIKE
+                    </button>
+                    <button class="action-btn watch-btn" onclick="playContent('${content.url}', '${content.title}')">
+                        🎬 WATCH
+                    </button>
+                    ${!content.isRecommendation ? `
+                    <button class="action-btn admin-btn" onclick="deleteContent('${content.id}')">
+                        🗑️ DELETE
+                    </button>
+                    ` : ''}
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Play content using custom video player
+        function playContent(url, title = '') {
+            if (!window.customVideoPlayer) {
+                // Create custom video player
+                window.customVideoPlayer = {
+                    init: function(videoUrl, videoTitle) {
+                        // Create modal overlay
+                        const modal = document.createElement('div');
+                        modal.style.cssText = `
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.95);
+                            z-index: 10000;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        `;
+                        
+                        modal.innerHTML = `
+                            <div style="position: relative; width: 90%; max-width: 900px; background: #000; border-radius: 15px; overflow: hidden;">
+                                <div style="position: absolute; top: 20px; right: 20px; z-index: 10001;">
+                                    <button onclick="this.closest('.video-modal').remove()" style="
+                                        background: linear-gradient(145deg, #ff0050, #ff0030);
+                                        color: white;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        border-radius: 25px;
+                                        font-weight: bold;
+                                        cursor: pointer;
+                                        font-size: 16px;
+                                    ">❌ CLOSE</button>
+                                </div>
+                                <div style="padding: 20px 20px 0 20px;">
+                                    <h2 style="color: #00f7ff; margin: 0 0 20px 0; text-align: center;">🎬 ${videoTitle}</h2>
+                                </div>
+                                <video controls autoplay style="width: 100%; height: auto; max-height: 70vh;" id="videoPlayer">
+                                    <source src="${videoUrl}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div style="padding: 20px; text-align: center; color: #ccc;">
+                                    <p>🎵 Playing: ${videoTitle}</p>
+                                    <p style="font-size: 0.9em; margin-top: 10px;">Press ESC or click CLOSE to exit</p>
+                                </div>
+                            </div>
+                        `;
+                        
+                        modal.className = 'video-modal';
+                        document.body.appendChild(modal);
+                        
+                        // Add ESC key listener
+                        const escHandler = (e) => {
+                            if (e.key === 'Escape') {
+                                modal.remove();
+                                document.removeEventListener('keydown', escHandler);
+                            }
+                        };
+                        document.addEventListener('keydown', escHandler);
+                        
+                        // Auto-focus video
+                        setTimeout(() => {
+                            const video = document.getElementById('videoPlayer');
+                            if (video) video.focus();
+                        }, 100);
+                    }
+                };
+            }
+            
+        }
+        
+        // Like content
+        async function likeContent(contentId) {
+            try {
+                // Find content in Firebase
+                const doc = await contentCollection.doc(contentId).get();
+                if (!doc.exists) {
+                    updateFirebaseStatus('❌ Content not found', true);
+                    return;
+                }
+                
+                const content = doc.data();
+                const currentLikes = content.likes || 0;
+                const newLikes = currentLikes + 1;
+                
+                // Update likes in Firebase
+                await contentCollection.doc(contentId).update({
+                    likes: newLikes,
+                    lastLiked: Date.now()
+                });
+                
+                // Update UI
+                const likesElement = document.getElementById(`likes-${contentId}`);
+                if (likesElement) {
+                    likesElement.textContent = `❤️ ${formatNumber(newLikes)}`;
+                }
+                
+                // Update local data
+                const localContent = allContent.find(c => c.id === contentId);
+                if (localContent) {
+                    localContent.likes = newLikes;
+                }
+                
+                updateFirebaseStatus(`✅ Liked "${content.title}"`);
+                
+            } catch (error) {
+                console.error('Like error:', error);
+                updateFirebaseStatus('❌ Failed to like content', true);
+            }
+        }
+        
+        // Delete content
+        async function deleteContent(contentId) {
+            const password = prompt('Enter admin password to delete content:');
+            if (password !== '4997G9749@j') {
+                alert('❌ Incorrect password');
+                return;
+            }
+            
+            if (!confirm('Are you sure you want to delete this content?')) {
+                return;
+            }
+            
+            try {
+                await contentCollection.doc(contentId).delete();
+                loadContentFromFirebase();
+                updateFirebaseStatus('✅ Content deleted successfully');
+                
+            } catch (error) {
+                console.error('Delete error:', error);
+                updateFirebaseStatus('❌ Failed to delete content', true);
+            }
+        }
+        
+        // Search content
+        function searchFirebaseMovies() {
+            const searchTerm = document.getElementById('searchMedia').value.trim().toLowerCase();
+            
+            if (!searchTerm) {
+                displayContentInAllSections();
+                updateFirebaseStatus('🔄 Showing all content');
+                return;
+            }
+            
+            const filteredContent = allContent.filter(content => 
+                content.title.toLowerCase().includes(searchTerm) ||
+                (content.description && content.description.toLowerCase().includes(searchTerm)) ||
+                content.year?.toString().includes(searchTerm) ||
+                content.rating?.toString().includes(searchTerm) ||
+                content.genre?.toLowerCase().includes(searchTerm) ||
+                content.type?.toLowerCase().includes(searchTerm)
+            );
+            
+            const allContentDiv = document.getElementById('all-content');
+            if (allContentDiv) {
+                allContentDiv.innerHTML = '';
+                allContentDiv.className = 'movie-grid';
+                
+                if (filteredContent.length === 0) {
+                    allContentDiv.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; color: #999; grid-column: 1 / -1;">
+                            <div style="font-size: 3em; margin-bottom: 20px;">🔍</div>
+                            <h3 style="color: #e50914; margin: 0 0 15px 0; font-size: 1.5em;">No results found for "${searchTerm}"</h3>
+                            <p style="margin: 0 0 20px 0; font-size: 1.1em;">Try searching with different keywords</p>
+                            <div style="background: linear-gradient(145deg, #2d2d2d, #1a1a1a); border: 1px solid #333; border-radius: 10px; padding: 20px; margin: 20px auto; max-width: 400px;">
+                                <h4 style="color: #e50914; margin: 0 0 10px 0;">💡 Search Tips:</h4>
+                                <ul style="text-align: left; margin: 0; padding-left: 20px;">
+                                    <li>Check spelling of your search term</li>
+                                    <li>Try using shorter keywords</li>
+                                    <li>Search by content type (movie, music, video)</li>
+                                    <li>Search by year or rating</li>
+                                    <li>Browse content using the tabs on the left</li>
+                                </ul>
+                            </div>
+                            <button onclick="clearSearch()" style="background: linear-gradient(145deg, #e50914, #cc0812); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin-top: 20px;">🔄 Clear Search</button>
+                        </div>
+                    `;
+                    updateFirebaseStatus(`❌ No results found for "${searchTerm}"`, true);
+                } else {
+                    filteredContent.forEach(content => {
+                        const contentCard = createContentCard(content);
+                        allContentDiv.appendChild(contentCard);
+                    });
+                    updateFirebaseStatus(`✅ Found ${filteredContent.length} items matching "${searchTerm}"`);
+                }
+            }
+        }
+        
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('searchMedia').value = '';
+            displayContentInAllSections();
+            updateFirebaseStatus('🔄 Showing all content');
+        }
+        
+        // Format numbers
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+        
+        // Tab switching function
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll(".tab-content").forEach(tab => {
+                tab.classList.remove("active");
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
+            
+            // Show selected tab
+            const selectedTab = document.getElementById(tabName + "-tab");
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+            
+            // Add active class to clicked button
+            if (event && event.target) {
+                event.target.classList.add("active");
+            }
+            
+            // Load TikTok content immediately when TikTok tab is clicked
+            if (tabName === 'tiktok') {
+                console.log('🎵 TikTok tab clicked - loading content immediately...');
+                loadTiktokContent();
+            }
+            
+            // Update Firebase status
+            updateFirebaseStatus(`🔄 Showing ${tabName} content`);
+        }
+        
+        // TikTok API Integration - Professional Version
+        function initializeTiktokIntegration() {
+            console.log('🎵 Initializing TikTok API Integration...');
+            
+            // Configuration (you'll need to get these from TikTok Developer Portal)
+            const tiktokConfig = {
+                apiKey: 'awl2uk7gkjqt6a2b',
+                apiSecret: '2y6kVsdyJhgtm2jPw7TTEKj297WG87D3',
+                redirectUri: window.location.origin + '/tiktok-auth.html'
+            };
+            
+            if (window.tiktokAPI) {
+                window.tiktokAPI.initialize(tiktokConfig).then(success => {
+                    if (success) {
+                        console.log('✅ TikTok API Integration loaded');
+                        loadTiktokContent();
+                    } else {
+                        console.log('❌ TikTok API Integration failed');
+                        showTiktokConnectPrompt();
+                    }
+                });
+            } else {
+                console.log('❌ TikTok API not available');
+                showTiktokConnectPrompt();
+            }
+        }
+
+        // Show TikTok connection prompt
+        function showTiktokConnectPrompt() {
+            const tiktokContainer = document.getElementById('tiktok-content');
+            if (tiktokContainer) {
+                tiktokContainer.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #ff0050;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">🎵</div>
+                        <h3 style="font-size: 1.5em; margin-bottom: 20px;">Connect Your TikTok Account</h3>
+                        <p style="margin-bottom: 30px; color: #ccc;">
+                            Connect your TikTok account to display your real TikTok videos on your website
+                        </p>
+                        <button onclick="connectToTiktok()" style="
+                            background: linear-gradient(145deg, #ff0050, #ff0030);
+                            color: white;
+                            border: none;
+                            padding: 15px 40px;
+                            border-radius: 25px;
+                            font-size: 1.2em;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            🎵 CONNECT TO TIKTOK
+                        </button>
+                        <div style="margin-top: 30px; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;">
+                            <h4 style="color: #00f7ff;">🚀 What You'll Get:</h4>
+                            <ul style="color: #ccc;">
+                                <li>✅ Display your real TikTok videos</li>
+                                <li>✅ Official TikTok video player</li>
+                                <li>✅ Real views, likes, and comments</li>
+                                <li>✅ Automatic video updates</li>
+                                <li>✅ Professional TikTok integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Connect to TikTok
+        function connectToTiktok() {
+            window.location.href = 'http://localhost:8000/tiktok-auth.html';
+        }
+
+        // Load TikTok content from API
+        function loadTiktokContent() {
+            console.log('🎵 Loading TikTok content from API...');
+            const tiktokContainer = document.getElementById('tiktok-content');
+            
+            if (!tiktokContainer) {
+                console.log('❌ TikTok container not found');
+                return;
+            }
+            
+            // Check if authenticated
+            if (!window.tiktokAPI || !window.tiktokAPI.isLoggedIn()) {
+                showTiktokConnectPrompt();
+                return;
+            }
+            
+            // Get videos from TikTok API
+            const tiktokVideos = window.tiktokAPI.getUserVideos();
+            const userProfile = window.tiktokAPI.getUserProfile();
+            
+            console.log(`📊 Found ${tiktokVideos.length} TikTok videos from API`);
+            
+            // Clear container and load videos
+            tiktokContainer.innerHTML = '';
+            
+            // Add user profile header
+            if (userProfile) {
+                const profileHeader = document.createElement('div');
+                profileHeader.style.cssText = `
+                    text-align: center;
+                    padding: 20px;
+                    background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+                    border-radius: 15px;
+                    margin-bottom: 20px;
+                `;
+                profileHeader.innerHTML = `
+                    <h3 style="color: #ff0050; margin: 0;">🎵 ${userProfile.display_name || 'Your TikTok'}</h3>
+                    <p style="color: #ccc; margin: 5px 0;">@${userProfile.username || 'username'}</p>
+                    <p style="color: #00f7ff; margin: 5px 0;">
+                        👥 ${userProfile.stats?.follower_count || 0} followers | 
+                        📹 ${tiktokVideos.length} videos
+                    </p>
+                `;
+                tiktokContainer.appendChild(profileHeader);
+            }
+            
+            if (tiktokVideos.length > 0) {
+                tiktokVideos.forEach(video => {
+                    const card = createTiktokCard(video);
+                    tiktokContainer.appendChild(card);
+                });
+                
+                console.log(`✅ Successfully loaded ${tiktokVideos.length} TikTok videos from API`);
+            } else {
+                tiktokContainer.innerHTML += `
+                    <div style="text-align: center; padding: 40px; color: #ff9800;">
+                        <div style="font-size: 2em; margin-bottom: 10px;">📹</div>
+                        <div style="font-size: 1.2em; font-weight: bold;">No TikTok videos found</div>
+                        <div style="font-size: 0.9em; color: #ccc; margin-top: 10px;">Upload some videos to your TikTok account!</div>
+                    </div>
+                `;
+            }
+        }
+
+        // Create TikTok card for API videos
+        function createTiktokCard(video) {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+            
+            card.innerHTML = `
+                <div class="movie-poster">
+                    <img src="${video.thumbnail}" alt="${video.title}">
+                    <div class="play-overlay">
+                        <button class="play-btn" onclick="playTiktokVideo('${video.id}', '${video.title}')">
+                            🎵 PLAY TIKTOK
+                        </button>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title">${video.title}</h3>
+                    <div class="movie-meta">
+                        <span class="movie-year">${video.creator}</span>
+                        <span>•</span>
+                        <span class="movie-type">🎵 TikTok</span>
+                        <span>•</span>
+                        <span class="movie-views">👁️ ${video.views}</span>
+                        <span>•</span>
+                        <span class="movie-duration">⏱️ ${video.duration}</span>
+                    </div>
+                    <div class="movie-actions">
+                        <button class="action-btn play-btn" onclick="playTiktokVideo('${video.id}', '${video.title}')">
+                            🎵 PLAY TIKTOK
+                        </button>
+                        <button class="action-btn watch-btn" onclick="playTiktokVideo('${video.id}', '${video.title}')">
+                            🎵 WATCH TIKTOK
+                        </button>
+                        <button class="action-btn like-btn" onclick="likeTiktokVideo('${video.id}')" id="like-btn-${video.id}">
+                            ❤️ ${video.likes}
+                        </button>
+                        <button class="action-btn view-likes-btn" onclick="viewLikes('${video.id}')" style="background: linear-gradient(145deg, #2196f3, #1976d2);">
+                            💬 ${video.comments}
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteTiktokVideo('${video.id}')" style="background: linear-gradient(145deg, #f44336, #d32f2f);">
+                            🗑️ DELETE
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Play TikTok video using API
+        function playTiktokVideo(videoId, title) {
+            console.log(`🎵 Playing TikTok video from API: ${videoId} - ${title}`);
+            
+            if (window.tiktokAPI && window.tiktokAPI.isLoggedIn()) {
+                window.tiktokAPI.playVideo(videoId);
+            } else {
+                console.log('❌ TikTok API not authenticated');
+                alert('❌ Please connect your TikTok account first');
+                connectToTiktok();
+            }
+        }
+
+        // Helper function to show success message
+        function showSuccessMessage(message) {
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(145deg, #4caf50, #388e3c);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: bold;
+                z-index: 10000;
+                box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+                animation: slideIn 0.3s ease;
+            `;
+            successMsg.textContent = message;
+            document.body.appendChild(successMsg);
+            
+            setTimeout(() => {
+                if (successMsg.parentNode) {
+                    successMsg.parentNode.removeChild(successMsg);
+                }
+            }, 3000);
+        }
+
+        // Like TikTok video (Public - no password required)
+        function likeTiktokVideo(videoId) {
+            console.log(`❤️ Liking TikTok video: ${videoId}`);
+            
+            // Get video information
+            let video = null;
+            if (window.realTikTokIntegration) {
+                video = window.realTikTokIntegration.getTrendingVideos().find(v => v.id === videoId);
+            }
+            
+            if (!video) {
+                alert('❌ Video not found');
+                return;
+            }
+            
+            // Get current user info (you can implement user authentication later)
+            const currentUser = {
+                id: 'user_' + Date.now(),
+                name: 'Anonymous User',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Update likes in Firebase (public likes)
+            if (window.firebase && firebase.firestore) {
+                const db = firebase.firestore();
+                const videoRef = db.collection('tiktok_videos').doc(videoId);
+                
+                // Use transaction to safely increment likes
+                db.runTransaction((transaction) => {
+                    return transaction.get(videoRef).then((doc) => {
+                        if (!doc.exists) {
+                            transaction.set(videoRef, {
+                                videoId: videoId,
+                                title: video.title,
+                                likes: 1,
+                                likedBy: [currentUser],
+                                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                        } else {
+                            const data = doc.data();
+                            const likedBy = data.likedBy || [];
+                            const userAlreadyLiked = likedBy.some(user => user.id === currentUser.id);
+                            
+                            if (!userAlreadyLiked) {
+                                transaction.update(videoRef, {
+                                    likes: firebase.firestore.FieldValue.increment(1),
+                                    likedBy: firebase.firestore.FieldValue.arrayUnion(currentUser),
+                                    lastLikedAt: firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                                console.log(`❤️ ${currentUser.name} liked: ${video.title}`);
+                                alert(`✅ You liked "${video.title}"! ❤️`);
+                            } else {
+                                alert(`💖 You already liked "${video.title}"!`);
+                            }
+                        }
+                    });
+                }).catch((error) => {
+                    console.error('❌ Error liking video:', error);
+                    // Fallback: just show success
+                    console.log(`❤️ Liked: ${video.title} (local)`);
+                    alert(`✅ You liked "${video.title}"! ❤️`);
+                });
+            } else {
+                // Fallback: local like tracking
+                console.log(`❤️ Liked: ${video.title} (local)`);
+                alert(`✅ You liked "${video.title}"! ❤️`);
+            }
+            
+            // Update UI to show new like count
+            updateLikeDisplay(videoId);
+        }
+
+        // Update like display
+        function updateLikeDisplay(videoId) {
+            // Find and update like buttons for this video
+            const likeButtons = document.querySelectorAll(`[onclick*="likeTiktokVideo('${videoId}')"]`);
+            likeButtons.forEach(button => {
+                const currentText = button.textContent;
+                if (currentText.includes('❤️')) {
+                    button.textContent = currentText.replace('❤️ LIKE', '💖 LIKED');
+                    button.style.background = 'linear-gradient(145deg, #e91e63, #c2185b)';
+                }
+            });
+        }
+
+        // Delete TikTok video (Admin only)
+        function deleteTiktokVideo(videoId) {
+            const password = prompt('Enter admin password to delete TikTok video:');
+            if (password !== '4997G9749@j') {
+                alert('❌ Incorrect admin password');
+                return;
+            }
+            
+            if (confirm(`Are you sure you want to delete this TikTok video?`)) {
+                console.log(`🗑️ Deleting TikTok video: ${videoId}`);
+                
+                // Delete from Firebase
+                if (window.firebase && firebase.firestore) {
+                    const db = firebase.firestore();
+                    db.collection('tiktok_videos').doc(videoId).delete()
+                        .then(() => {
+                            alert(`✅ TikTok video deleted successfully!`);
+                            // Refresh content
+                            loadTiktokContent();
+                        })
+                        .catch((error) => {
+                            console.error('❌ Error deleting video:', error);
+                            alert(`❌ Error deleting video: ${error.message}`);
+                        });
+                } else {
+                    alert(`✅ TikTok video deleted (local only)!`);
+                }
+            }
+        }
+
+        // View who liked a video
+        function viewLikes(videoId) {
+            console.log(`👁️ Viewing likes for: ${videoId}`);
+            
+            if (window.firebase && firebase.firestore) {
+                const db = firebase.firestore();
+                db.collection('tiktok_videos').doc(videoId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            const likedBy = data.likedBy || [];
+                            const likes = data.likes || 0;
+                            
+                            let likesList = `❤️ ${likes} people liked this video:\n\n`;
+                            likedBy.forEach((user, index) => {
+                                likesList += `${index + 1}. ${user.name} - ${new Date(user.timestamp).toLocaleString()}\n`;
+                            });
+                            
+                            if (likedBy.length === 0) {
+                                likesList = '❤️ No likes yet. Be the first to like this video!';
+                            }
+                            
+                            alert(likesList);
+                        } else {
+                            alert('❤️ No likes yet. Be the first to like this video!');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('❌ Error fetching likes:', error);
+                        alert('❤️ Likes information not available');
+                    });
+            } else {
+                alert('❤️ Likes information not available (Firebase not connected)');
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                loadContentFromFirebase();
+                initializeTiktokIntegration();
+                trackVisitor(); // Track visitor
+            }, 1000);
+        });
+        
+        // Visitor tracking system
+        function trackVisitor() {
+            console.log('👁 Tracking visitor...');
+            
+            // Get visitor information
+            const visitorInfo = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                language: navigator.language || 'unknown',
+                platform: navigator.platform || 'unknown',
+                referrer: document.referrer || 'direct',
+                ip: 'tracked', // In production, you'd get actual IP
+                sessionId: generateSessionId(),
+                pageView: 'fun.html'
+            };
+            
+            console.log('👁 Visitor info:', visitorInfo);
+            
+            // Save visitor to Firebase
+            saveVisitorToFirebase(visitorInfo);
+        }
+        
+        // Generate session ID
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        // Save visitor to Firebase
+        function saveVisitorToFirebase(visitorInfo) {
+            // Initialize Firebase for visitor tracking
+            const firebaseConfig = {
+                apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+                authDomain: "josees-finest.firebaseapp.com",
+                projectId: "josees-finest",
+                storageBucket: "josees-finest.firebasestorage.app",
+                messagingSenderId: "1023918542701",
+                appId: "1:1023918542701:web:e087b978b61eaba1001464",
+                measurementId: "G-Z8XPQ46GYG"
+            };
+            
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            
+            // Save visitor data
+            const db = firebase.firestore();
+            db.collection('visitors').add(visitorInfo)
+                .then((docRef) => {
+                    console.log('✅ Visitor tracked with ID:', docRef.id);
+                })
+                .catch((error) => {
+                    console.error('❌ Failed to track visitor:', error);
+                });
+        }
+        
+        // Get visitor statistics
+        function getVisitorStats() {
+            console.log('📊 Getting visitor statistics...');
+            
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+                authDomain: "josees-finest.firebaseapp.com",
+                projectId: "josees-finest",
+                storageBucket: "josees-finest.firebasestorage.app",
+                messagingSenderId: "1023918542701",
+                appId: "1:1023918542701:web:e087b978b61eaba1001464",
+                measurementId: "G-Z8XPQ46GYG"
+            };
+            
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            
+            // Get visitor data
+            const db = firebase.firestore();
+            db.collection('visitors')
+                .orderBy('timestamp', 'desc')
+                .limit(100)
+                .get()
+                .then((snapshot) => {
+                    console.log('📊 Visitor statistics:');
+                    console.log('Total visitors:', snapshot.size);
+                    
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    const todayVisitors = snapshot.docs.filter(doc => {
+                        const visitTime = doc.data().timestamp.toDate();
+                        return visitTime >= today;
+                    });
+                    
+                    console.log('Today\'s visitors:', todayVisitors.length);
+                    
+                    // Display visitor info
+                    snapshot.forEach((doc, index) => {
+                        const visitor = doc.data();
+                        console.log(`Visitor ${index + 1}:`, {
+                            time: visitor.timestamp,
+                            page: visitor.pageView,
+                            platform: visitor.platform,
+                            language: visitor.language
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error('❌ Failed to get visitor stats:', error);
+                });
+        }
+
+        // Comprehensive Firebase debug function
+        function debugFirebaseComplete() {
+            console.log('🔍 === COMPREHENSIVE FIREBASE DEBUG ===');
+            console.log('📋 Total Firebase content items:', allContent.length);
+            console.log('📋 All Firebase content:', allContent);
+            
+            if (allContent.length > 0) {
+                console.log('📋 First content item:', allContent[0]);
+                console.log('📋 First content ID:', allContent[0].id);
+                console.log('📋 First content URL:', allContent[0].url || allContent[0].link);
+                console.log('📋 First content title:', allContent[0].title);
+                console.log('📋 First content type:', allContent[0].type);
+                console.log('📋 First content createdAt:', allContent[0].createdAt);
+                
+                // Show all items by type
+                const movies = allContent.filter(item => item.type === 'movie');
+                const music = allContent.filter(item => item.type === 'music');
+                const videos = allContent.filter(item => item.type === 'video');
+                
+                console.log('🎬 Movies found:', movies.length);
+                movies.forEach((movie, index) => {
+                    console.log(`🎬 Movie ${index + 1}:`, {
+                        title: movie.title,
+                        id: movie.id,
+                        type: movie.type,
+                        url: movie.url || movie.link,
+                        createdAt: movie.createdAt
+                    });
+                });
+                
+                console.log('🎵 Music found:', music.length);
+                console.log('📺 Videos found:', videos.length);
+                
+                // Check for items without proper type
+                const unknownType = allContent.filter(item => !item.type || item.type === '');
+                console.log('❓ Items without type:', unknownType.length);
+                
+                // Check for items without URL
+                const noUrl = allContent.filter(item => !item.url && !item.link);
+                console.log('❌ Items without URL:', noUrl.length);
+                
+            } else {
+                console.log('⚠️ No Firebase content loaded yet. Waiting for Firebase connection...');
+                console.log('🔥 Try clicking the 🔄 Refresh button or uploading again.');
+            }
+            
+            console.log('🔍 === END DEBUG ===');
+        }
+
+        // Force refresh with detailed logging
+        function forceRefreshFirebase() {
+            console.log('🔄 === FORCE REFRESH FIREBASE ===');
+            console.log('🔄 Clearing existing content and reloading...');
+            
+            // Clear existing content
+            allContent = [];
+            
+            // Update status
+            updateFirebaseStatus('🔄 Force refreshing content...');
+            
+            // Reload from Firebase with detailed logging
+            loadContentFromFirebase().then(() => {
+                console.log('✅ Force refresh completed');
+                debugFirebaseComplete();
+            }).catch(error => {
+                console.error('❌ Force refresh failed:', error);
+            });
+        }
+
+        // Refresh Firebase content function
+        function refreshFirebaseContent() {
+            console.log('🔄 Refreshing Firebase content...');
+            updateFirebaseStatus('🔄 Refreshing content...');
+            
+            // Clear existing content
+            allContent = [];
+            
+            // Reload from Firebase
+            loadContentFromFirebase();
+        }
+
+        // Force refresh button
+        function addRefreshButton() {
+            const statusDiv = document.querySelector('.firebase-status');
+            if (statusDiv) {
+                const refreshBtn = document.createElement('button');
+                refreshBtn.textContent = '🔄 Refresh';
+                refreshBtn.style.cssText = `
+                    background: linear-gradient(145deg, #4caf50, #45a049);
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    margin-left: 10px;
+                    transition: all 0.3s ease;
+                `;
+                refreshBtn.onclick = refreshFirebaseContent;
+                refreshBtn.onmouseover = () => refreshBtn.style.transform = 'scale(1.05)';
+                refreshBtn.onmouseout = () => refreshBtn.style.transform = 'scale(1)';
+                statusDiv.appendChild(refreshBtn);
+                
+                // Add debug button
+                const debugBtn = document.createElement('button');
+                debugBtn.textContent = '🔍 Debug';
+                debugBtn.style.cssText = `
+                    background: linear-gradient(145deg, #2196F3, #1976D2);
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    margin-left: 5px;
+                    transition: all 0.3s ease;
+                `;
+                debugBtn.onclick = debugFirebaseComplete;
+                debugBtn.onmouseover = () => debugBtn.style.transform = 'scale(1.05)';
+                debugBtn.onmouseout = () => debugBtn.style.transform = 'scale(1)';
+                statusDiv.appendChild(debugBtn);
+                
+                // Add force refresh button
+                const forceBtn = document.createElement('button');
+                forceBtn.textContent = '🔄 Force';
+                forceBtn.style.cssText = `
+                    background: linear-gradient(145deg, #FF9800, #F57C00);
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    margin-left: 5px;
+                    transition: all 0.3s ease;
+                `;
+                forceBtn.onclick = forceRefreshFirebase;
+                forceBtn.onmouseover = () => forceBtn.style.transform = 'scale(1.05)';
+                forceBtn.onmouseout = () => forceBtn.style.transform = 'scale(1)';
+                statusDiv.appendChild(forceBtn);
+            }
+        }
+
+        // Open video theatre function (global scope)
+        function openVideoTheatreImmediately(mediaId) {
+            console.log('🎬 Opening video player for media ID:', mediaId);
+            
+            // Get media from Firebase allContent array (not localStorage)
+            const media = allContent.find(m => m.id === mediaId);
+            console.log('📋 All Firebase content:', allContent);
+            console.log('📋 Looking for media ID:', mediaId);
+            console.log('📋 Found media:', media);
+            
+            if (media) {
+                // Use the new video player
+                console.log('✅ Media found in Firebase, calling openVideoPlayer...');
+                openVideoPlayer(media);
+            } else {
+                console.error('❌ Media not found for ID:', mediaId);
+                console.error('❌ Available IDs:', allContent.map(m => m.id));
+                alert('Video not found. Please try again.\n\nDebug: Check console for available media IDs.');
+            }
+        }
+
+        // Open video player function
+        function openVideoPlayer(media) {
+            console.log('🎬 Opening video player with media:', media);
+            
+            // Build video player URL with parameters
+            const videoUrl = media.url || media.link;
+            const title = media.title;
+            const type = media.type || media.category || 'video';
+            
+            console.log('📋 Video URL:', videoUrl);
+            console.log('📋 Title:', title);
+            console.log('📋 Type:', type);
+            
+            if (!videoUrl) {
+                console.error('❌ No video URL found in media object');
+                alert('Video URL not found. Please check the media data.');
+                return;
+            }
+            
+            const playerUrl = `video-player.html?video=${encodeURIComponent(videoUrl)}&title=${encodeURIComponent(title)}&type=${encodeURIComponent(type)}`;
+            
+            console.log('🔗 Player URL:', playerUrl);
+            
+            // Open in new window
+            window.open(playerUrl, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+        }
+
+        // Test function to verify Firebase data
+        function testFirebaseMovie() {
+            console.log('🧪 Testing Firebase movie data...');
+            
+            if (allContent.length === 0) {
+                console.log('⚠️ No Firebase content loaded yet');
+                alert('Please wait for Firebase to load content first.');
+                return;
+            }
+            
+            // Find first movie with URL
+            const testMovie = allContent.find(item => {
+                const url = item.url || item.link;
+                return url && url !== '#' && url.trim() !== '';
+            });
+            
+            if (testMovie) {
+                console.log('✅ Found test movie:', testMovie);
+                console.log('📋 Movie URL:', testMovie.url || testMovie.link);
+                console.log('📋 Opening video player...');
+                openVideoTheatreImmediately(testMovie.id);
+            } else {
+                console.log('❌ No movies with valid URLs found in Firebase');
+                console.log('📋 All content:', allContent);
+                alert('No movies with valid video URLs found. Please add movies with URLs to Firebase.');
+            }
+        }
+  </script>
+
+</body>
+</html>

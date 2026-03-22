@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Daily Quotes - Love & Inspiration</title>
+
+<link rel="stylesheet" href="CSS/style-clean.css">
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<style>
+/* Romantic Theme Styling */
+body{
+  font-family: 'Georgia', serif;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease;
+  overflow-x: hidden;
+}
+
+/* Romantic Background Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 182, 193, 0.3) 0%, 
+    rgba(255, 105, 180, 0.2) 25%, 
+    rgba(219, 112, 147, 0.3) 50%, 
+    rgba(255, 20, 147, 0.2) 75%, 
+    rgba(199, 21, 133, 0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enhanced Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 182, 193, 0.3);
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar h2 {
+  color: #ff69b4;
+  letter-spacing: 2px;
+  font-size: 24px;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+  font-family: 'Georgia', serif;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 182, 193, 0.1);
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  color: #ff69b4;
+  background: rgba(255, 182, 193, 0.2);
+  border-color: rgba(255, 105, 180, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+}
+
+/* Romantic Header */
+h1{
+  padding-top: 80px;
+  margin-bottom: 30px;
+  font-size: 56px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585, #db7093, #ffb6c1);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: romanticGradient 4s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+  font-family: 'Georgia', serif;
+}
+
+@keyframes romanticGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Romantic Category Bar */
+.category-bar{
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.category-bar::before {
+  content: '💕';
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.category-bar::after {
+  content: '💕';
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  animation: heartbeat 1.5s ease-in-out infinite 0.75s;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.2); }
+}
+
+.category-bar button{
+  padding: 12px 24px;
+  margin: 8px;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  border-radius: 25px;
+  cursor: pointer;
+  background: rgba(255, 182, 193, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-bar button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.category-bar button:hover::before {
+  left: 100%;
+}
+
+.category-bar button:hover{
+  background: rgba(255, 105, 180, 0.4);
+  border-color: #ff69b4;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+}
+
+.category-bar button.active {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  border-color: transparent;
+  color: white;
+}
+
+/* Romantic Quote Container */
+.quote-container{
+  max-width: 900px;
+  margin: auto;
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-box{
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  border-radius: 20px;
+  margin: 25px;
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: romanticFadeUp 1s forwards;
+  transition: all 0.3s ease;
+}
+
+.quote-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff69b4, #ff1493, #c71585, #db7093, #ffb6c1);
+  background-size: 300% 100%;
+  animation: romanticGradient 3s ease-in-out infinite;
+}
+
+.quote-box:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+  border-color: rgba(255, 105, 180, 0.5);
+}
+
+@keyframes romanticFadeUp{
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.quote{
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0 30px;
+}
+
+.quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -10px;
+  font-size: 60px;
+  color: rgba(255, 105, 180, 0.3);
+  font-family: 'Georgia', serif;
+}
+
+.quote::after {
+  content: '"';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  font-size: 60px;
+  color: rgba(255, 105, 180, 0.3);
+  font-family: 'Georgia', serif;
+}
+
+.author{
+  margin-top: 25px;
+  font-size: 18px;
+  color: #ffb6c1;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.author::before {
+  content: '💝 ';
+}
+
+.share-btn{
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.share-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.share-btn:hover::before {
+  left: 100%;
+}
+
+.share-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+.load-more{
+  padding: 15px 30px;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  border-radius: 30px;
+  background: rgba(255, 182, 193, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  cursor: pointer;
+  margin: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.load-more::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 105, 180, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.load-more:hover::before {
+  left: 100%;
+}
+
+.load-more:hover{
+  background: rgba(255, 105, 180, 0.4);
+  border-color: #ff69b4;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+}
+
+/* Floating Hearts Animation */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  color: rgba(255, 105, 180, 0.6);
+  animation: float 6s ease-in-out infinite;
+  font-size: 20px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    padding-top: 60px;
+  }
+  
+  .category-bar::before,
+  .category-bar::after {
+    display: none;
+  }
+  
+  .quote {
+    font-size: 20px;
+    padding: 0 20px;
+  }
+  
+  .quote::before,
+  .quote::after {
+    font-size: 40px;
+  }
+  
+  .quote-box {
+    margin: 15px;
+    padding: 25px;
+  }
+}
+</style>
+
+</head>
+<body class="no-code-rain quotes-page">
+
+<!-- Floating Hearts Animation -->
+<div class="floating-hearts" id="heartsContainer"></div>
+
+<!-- Romantic Navbar -->
+<header class="navbar">
+  <h2>@JOSEE'S FINEST</h2>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="projects.html">🚀 Projects</a></li>
+    <li><a href="contact.html">📧 Contact</a></li>
+    <li><a href="fun.html">🎉 Fun</a></li>
+    <li><a href="quotes.html">💭 Quotes</a></li>
+    <li><a href="professional.html">💼 Professional</a></li>
+  </ul>
+</header>
+
+<h1>💕 Daily Love & Inspiration 💕</h1>
+
+<div class="category-bar">
+
+<button onclick="filterQuotes('all')" class="active">💖 All</button>
+<button onclick="filterQuotes('motivation')">🌟 Motivation</button>
+<button onclick="filterQuotes('success')">🏆 Success</button>
+<button onclick="filterQuotes('wisdom')">🧠 Wisdom</button>
+<button onclick="filterQuotes('happiness')">😊 Happiness</button>
+<button onclick="manualRefreshQuotes()" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">🔄 Refresh Quotes</button>
+
+</div>
+
+<div id="quotesContainer" class="quote-container"></div>
+
+<button class="load-more" onclick="loadMore()">💝 Load More Love</button>
+
+<script>
+// Create floating hearts
+function createHeart() {
+  const heartsContainer = document.getElementById('heartsContainer');
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = ['💕', '💖', '💗', '💝', '💘'][Math.floor(Math.random() * 5)];
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.animationDelay = Math.random() * 6 + 's';
+  heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  heartsContainer.appendChild(heart);
+  
+  setTimeout(() => {
+    heartsContainer.removeChild(heart);
+  }, 7000);
+}
+
+// Generate hearts periodically
+setInterval(createHeart, 2000);
+
+// Initial hearts
+for (let i = 0; i < 5; i++) {
+  setTimeout(createHeart, i * 400);
+}
+
+let allQuotes = [];
+let visibleQuotes = 10;
+
+// Enhanced fallback quotes with romantic theme
+const fallbackQuotes = [
+  { q: "The future depends on what you do today.", a: "Mahatma Gandhi" },
+  { q: "Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day.", a: "Unknown" },
+  { q: "Code is like humor. When you have to explain it, it's bad.", a: "Cory House" },
+  { q: "It always seems impossible until it's done.", a: "Nelson Mandela" },
+  { q: "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.", a: "Lao Tzu" },
+  { q: "First, solve the problem. Then, write the code.", a: "John Johnson" },
+  { q: "The best way to get started is to quit talking and begin doing.", a: "Walt Disney" },
+  { q: "Love yourself first and everything else falls into line.", a: "Lucille Ball" }
+];
+
+// Romantic background images
+const backgrounds = [
+  "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1493244040629-496f6d136cc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1529465230-5db9eb156744?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+];
+
+document.body.style.backgroundImage =
+  "url('" + backgrounds[Math.floor(Math.random()*backgrounds.length)] + "')";
+
+async function loadQuotes(){
+  // Try cached quotes from localStorage first (24h cache)
+  const cached = localStorage.getItem("dailyQuotes");
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      const hours = (Date.now() - parsed.time) / (1000 * 60 * 60);
+      console.log(`Cache age: ${hours} hours`);
+      
+      // Always refresh after 24 hours
+      if (hours < 24 && Array.isArray(parsed.quotes) && parsed.quotes.length) {
+        allQuotes = parsed.quotes;
+        displayQuotes();
+        
+        // Check if we need to refresh (close to 24 hours)
+        if (hours > 23) {
+          console.log("Cache expired, refreshing quotes...");
+          await refreshQuotes();
+        }
+        return;
+      }
+    } catch (e) {
+      console.warn("Failed to read cached quotes", e);
+    }
+  }
+
+  // Fetch fresh quotes from API (cache expired or invalid)
+  await refreshQuotes();
+}
+
+async function refreshQuotes() {
+  try {
+    console.log("Fetching fresh quotes from API...");
+    const res = await fetch("https://zenquotes.io/api/quotes");
+    if (!res.ok) throw new Error("Bad response: " + res.status);
+    const data = await res.json();
+    allQuotes = Array.isArray(data) && data.length ? data.slice(0, 20) : fallbackQuotes;
+    displayQuotes();
+    
+    // Store in localStorage with timestamp (24-hour cache)
+    localStorage.setItem(
+      "dailyQuotes",
+      JSON.stringify({ quotes: allQuotes, time: Date.now() })
+    );
+    
+    console.log("Quotes refreshed and cached successfully");
+    console.log(`Next automatic refresh: ${new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString()}`);
+  } catch (e) {
+    console.error("Failed to load quotes, using fallback", e);
+    allQuotes = fallbackQuotes;
+    displayQuotes();
+  }
+}
+
+function displayQuotes(){
+  let container=document.getElementById("quotesContainer");
+  container.innerHTML="";
+
+  allQuotes.slice(0,visibleQuotes).forEach((q, index)=>{
+    
+    // Add staggered animation delay
+    const delay = index * 0.1;
+    
+    container.innerHTML += `
+      <div class="quote-box" style="animation-delay: ${delay}s">
+        <p class="quote">"${q.q}"</p>
+        <p class="author">- ${q.a}</p>
+        <button class="share-btn" onclick="shareQuote('${q.q}','${q.a}')">
+          💝 Share Love
+        </button>
+      </div>
+    `;
+  });
+}
+
+function loadMore(){
+  visibleQuotes += 5;
+  displayQuotes();
+}
+
+function shareQuote(q, a){
+  let text = encodeURIComponent(`"${q}" - ${a}`);
+  window.open(`https://wa.me/?text=${text}`);
+}
+
+async function manualRefreshQuotes() {
+  console.log("Manual refresh triggered");
+  
+  // Clear existing cache
+  localStorage.removeItem("dailyQuotes");
+  
+  // Show loading state
+  let container = document.getElementById("quotesContainer");
+  container.innerHTML = '<div style="text-align: center; padding: 40px; color: #ff69b4; font-size: 18px;">🔄 Refreshing quotes...</div>';
+  
+  // Force refresh
+  await refreshQuotes();
+}
+
+function filterQuotes(type){
+  // Update active button
+  document.querySelectorAll('.category-bar button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+
+  if(type==="all"){
+    displayQuotes();
+    return;
+  }
+
+  let filtered = allQuotes.filter(q =>
+    q.q.toLowerCase().includes(type)
+  );
+
+  let container=document.getElementById("quotesContainer");
+  container.innerHTML="";
+
+  filtered.forEach((q, index)=>{
+    const delay = index * 0.1;
+    
+    container.innerHTML += `
+      <div class="quote-box" style="animation-delay: ${delay}s">
+        <p class="quote">"${q.q}"</p>
+        <p class="author">- ${q.a}</p>
+        <button class="share-btn" onclick="shareQuote('${q.q}','${q.a}')">
+          💝 Share Love
+        </button>
+      </div>
+    `;
+  });
+}
+
+// Initialize Firebase and load quotes
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+        authDomain: "josees-finest.firebaseapp.com",
+        projectId: "josees-finest",
+        storageBucket: "josees-finest.firebasestorage.app",
+        messagingSenderId: "1023918542701",
+        appId: "1:1023918542701:web:e087b978b61eaba1001464",
+        measurementId: "G-Z8XPQ46GYG"
+    };
+    
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    
+    const db = firebase.firestore();
+    
+    // Load quotes from Firebase
+    loadQuotesFromFirebase();
+});
+
+// Load quotes from Firebase
+async function loadQuotesFromFirebase() {
+    try {
+        const db = firebase.firestore();
+        const quotesCollection = db.collection('quotes');
+        
+        // Check if quotes exist in Firebase
+        const snapshot = await quotesCollection.limit(1).get();
+        
+        if (snapshot.empty) {
+            // Add default quotes to Firebase
+            const defaultQuotes = [
+                { q: "The best way to predict the future is to create it.", a: "Abraham Lincoln" },
+                { q: "Success is not final, failure is not fatal: It is the courage to continue that counts.", a: "Winston Churchill" },
+                { q: "The only way to do great work is to love what you do.", a: "Steve Jobs" },
+                { q: "Innovation distinguishes between a leader and a follower.", a: "Steve Jobs" },
+                { q: "Life is what happens when you're busy making other plans.", a: "John Lennon" },
+                { q: "The future belongs to those who believe in the beauty of their dreams.", a: "Eleanor Roosevelt" }
+            ];
+            
+            defaultQuotes.forEach(async (quote) => {
+                await quotesCollection.add({
+                    ...quote,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            });
+            
+            console.log('✅ Default quotes added to Firebase');
+        }
+        
+        // Load all quotes from Firebase
+        const allQuotesSnapshot = await quotesCollection.orderBy('createdAt', 'desc').get();
+        const quotes = [];
+        allQuotesSnapshot.forEach((doc) => {
+            quotes.push({ id: doc.id, ...doc.data() });
+        });
+        
+        // Display quotes
+        displayQuotes(quotes);
+        
+    } catch (error) {
+        console.error('Error loading quotes from Firebase:', error);
+        // Fallback to static quotes
+        loadQuotes();
+    }
+}
+
+// Display quotes from Firebase
+function displayQuotes(quotes) {
+    let container = document.getElementById("quotesContainer");
+    container.innerHTML = "";
+    
+    if (quotes.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 40px; color: rgba(255,255,255,0.6);">📭 No quotes found. Loading default quotes...</p>';
+        loadQuotes(); // Fallback to static quotes
+        return;
+    }
+    
+    quotes.forEach((q, index) => {
+        const delay = index * 0.1;
+        
+        container.innerHTML += `
+          <div class="quote-box" style="animation-delay: ${delay}s">
+            <p class="quote">"${q.q}"</p>
+            <p class="author">- ${q.a}</p>
+            <button class="share-btn" onclick="shareQuote('${q.q}','${q.a}')">
+              💝 Share Love
+            </button>
+          </div>
+        `;
+    });
+}
+
+// Add new quote to Firebase
+async function addQuoteToFirebase(quoteData) {
+    try {
+        const db = firebase.firestore();
+        await db.collection('quotes').add({
+            ...quoteData,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        console.log('Quote added to Firebase successfully');
+        loadQuotesFromFirebase(); // Reload quotes
+    } catch (error) {
+        console.error('Error adding quote to Firebase:', error);
+    }
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Admin Login - JOSEE'S FINEST</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            border: 2px solid #333;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .login-header {
+            margin-bottom: 30px;
+        }
+        .login-header h1 {
+            color: #e50914;
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            text-shadow: 0 2px 4px rgba(229, 9, 20, 0.3);
+        }
+        .login-header p {
+            color: #ccc;
+            font-size: 1em;
+            margin: 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            color: #e50914;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .form-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #555;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #e50914;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+        }
+        .login-btn {
+            background: linear-gradient(145deg, #e50914, #cc0812);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+            width: 100%;
+            margin-top: 10px;
+        }
+        .login-btn:hover {
+            background: linear-gradient(145deg, #ff1a1a, #e50914);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+        }
+        .error-message {
+            color: #f44336;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid #f44336;
+            border-radius: 8px;
+            display: none;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #00f7ff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            color: #00d4ff;
+            transform: translateY(-2px);
+        }
+        .lock-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: #e50914;
+            text-shadow: 0 2px 4px rgba(229, 9, 20, 0.3);
+        }
+    </style>
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="lock-icon">🔐</div>
+        <div class="login-header">
+            <h1>Admin Login</h1>
+            <p>Enter password to access the dashboard</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="adminPassword">🔑 Admin Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter admin password..." required>
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                ❌ Incorrect password. Please try again.
+            </div>
+            
+            <button type="submit" class="login-btn">🔓 Access Dashboard</button>
+        </form>
+        
+        <a href="fun.html" class="back-link">← Back to Fun Page</a>
+    </div>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdCAfblfC8HjcaIZFIi34WoA9hO0fXELY",
+            authDomain: "josees-finest.firebaseapp.com",
+            projectId: "josees-finest",
+            storageBucket: "josees-finest.firebasestorage.app",
+            messagingSenderId: "1023918542701",
+            appId: "1:1023918542701:web:e087b978b61eaba1001464",
+            measurementId: "G-Z8XPQ46GYG"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        const db = firebase.firestore();
+        
+        // Admin password
+        const ADMIN_PASSWORD = '4997G9749@j';
+        
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password === ADMIN_PASSWORD) {
+                // Log login to Firebase
+                db.collection('adminLogins').add({
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    success: true,
+                    ip: 'tracked', // In production, you'd get actual IP
+                    userAgent: navigator.userAgent
+                }).then(() => {
+                    console.log('✅ Admin login logged to Firebase');
+                }).catch((error) => {
+                    console.error('❌ Failed to log login:', error);
+                });
+                
+                // Redirect to admin panel
+                window.location.href = 'admin-panel.html';
+            } else {
+                // Log failed login attempt to Firebase
+                db.collection('adminLogins').add({
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    success: false,
+                    ip: 'tracked', // In production, you'd get actual IP
+                    userAgent: navigator.userAgent,
+                    passwordAttempt: password
+                }).then(() => {
+                    console.log('❌ Failed admin login logged to Firebase');
+                }).catch((error) => {
+                    console.error('❌ Failed to log failed login:', error);
+                });
+                
+                // Show error message
+                errorMessage.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                
+                // Hide error after 3 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+        
+        // No auto-login check - always require password
+    </script>
+</body>
+</html>
