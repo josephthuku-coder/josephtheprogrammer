@@ -1,4 +1,7 @@
-/* ================= HOME PAGE ROMANTIC ENHANCEMENTS ================= */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}/* ================= HOME PAGE ROMANTIC ENHANCEMENTS ================= */
 
 /* Romantic Overlay */
 .romantic-overlay {
@@ -266,6 +269,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+max-width:100%;
 font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -274,10 +278,15 @@ background:transparent;
 color:white;
 min-height:100vh;
 overflow-x:hidden;
+width:100%;
 position:relative;
 isolation:isolate;
 display:flex;
 flex-direction:column;
+}
+
+html, body {
+overflow-x: hidden;
 }
 
 /* Quotes page keeps its own full-page nature background and normal flow */
@@ -1935,4 +1944,36 @@ body.external-site .floating-nav-tab {
 
 body:not(.external-site) .floating-nav-tab {
   display: none;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px){
+
+.navbar{
+flex-direction:column;
+text-align:center;
+}
+
+.nav-links{
+flex-direction:column;
+gap:10px;
+}
+
+.hero h1{
+font-size:28px;
+}
+
+section{
+padding:20px;
+}
+
+}
+
+img, iframe, video {
+max-width: 100%;
+height: auto;
+}
+
+* {
+word-wrap: break-word;
 }
